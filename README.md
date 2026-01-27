@@ -15,7 +15,7 @@ Este guia oferece:
 
 [https://marcio661.github.io/](https://marcio661.github.io/)
 
-## 🎨 Características
+##  Características
 
 - Design inspirado na estética Belle Époque do jogo
 - Sistema de navegação interativa
