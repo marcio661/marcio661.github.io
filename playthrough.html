@@ -7,6 +7,7 @@
     <title>Playthrough Completa - Clair Obscur: Expedition 33</title>
     <meta name="description"
         content="Playthrough 100% completa de Clair Obscur: Expedition 33 com todos os coletáveis e troféus.">
+    <meta name="author" content="Marcio Luis Cipriano De Souza">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -60,6 +61,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+            text-decoration: none;
         }
 
         .collectible::before {
@@ -101,6 +103,12 @@
             background: rgba(50, 205, 50, 0.15);
             color: #90ee90;
             border: 1px solid rgba(50, 205, 50, 0.3);
+        }
+
+        .collectible[data-type="trofeu"] {
+            background: rgba(218, 165, 32, 0.2);
+            color: #daa520;
+            border: 1px solid rgba(218, 165, 32, 0.4);
         }
 
         .collectible:hover {
@@ -190,6 +198,15 @@
             <div class="header-divider"></div>
         </header>
 
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="playthrough.html" class="nav-link active">Atos</a></li>
+                <li><a href="colecionaveis.html" class="nav-link">Colecionáveis</a></li>
+                <li><a href="trofeus.html" class="nav-link">Troféus</a></li>
+            </ul>
+        </nav>
+
         <a href="index.html" class="back-button">
             ← Voltar ao Início
         </a>
@@ -199,13 +216,14 @@
             <section id="prologo">
                 <h2 class="chapter-title">Prólogo</h2>
 
-                <div class="map-section" data-map="inicio">
-                    <h3 class="map-title"> Início</h3>
+                <div class="map-section" data-map="lumiere">
+                    <h3 class="map-title">Lumière</h3>
                     <div class="playthrough-text">
                         <p id="intro-1">
                             Estamos jogando com Gustave, logo de início vire à esquerda para pegar o item
-                            <span class="collectible" data-type="missao" data-chapter="prologo" data-map="inicio"
-                                data-icon="📜" id="coll-flor-sophie">Uma flor para Sophie</span>,
+                            <a href="colecionaveis.html#coll-flor-sophie" class="collectible" data-type="missao"
+                                data-chapter="prologo" data-map="lumiere" data-icon="📜" id="coll-flor-sophie">Uma flor
+                                para Sophie</a>,
                             esse é um item de missão.
                         </p>
                     </div>

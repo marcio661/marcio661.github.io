@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todos Colecionáveis - Clair Obscur: Expedition 33</title>
-    <meta name="description" content="Lista completa de todos os coletáveis de Clair Obscur: Expedition 33.">
+    <title>Troféus - Clair Obscur: Expedition 33</title>
+    <meta name="description" content="Lista completa de todos os troféus de Clair Obscur: Expedition 33.">
     <meta name="author" content="Marcio Luis Cipriano De Souza">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
     <link rel="icon" href="https://marcio661.github.io/assets/favicon.png" type="image/png">
 
     <style>
-        .collectibles-content {
+        .trophies-content {
             max-width: 1000px;
             margin: 0 auto;
         }
@@ -77,12 +77,12 @@
             letter-spacing: 0.05em;
         }
 
-        .collectible-list {
+        .trophy-list {
             display: grid;
             gap: 0.8rem;
         }
 
-        .collectible-item {
+        .trophy-item {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -93,41 +93,41 @@
             transition: all 0.3s ease;
         }
 
-        .collectible-item:hover {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: var(--color-primary);
+        .trophy-item:hover {
+            background: rgba(218, 165, 32, 0.1);
+            border-color: #daa520;
             transform: translateX(5px);
         }
 
-        .collectible-icon {
+        .trophy-icon {
             font-size: 2rem;
             min-width: 40px;
             text-align: center;
         }
 
-        .collectible-info {
+        .trophy-info {
             flex: 1;
         }
 
-        .collectible-name {
+        .trophy-name {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--color-text);
             margin-bottom: 0.3rem;
         }
 
-        .collectible-type {
+        .trophy-type {
             font-size: 0.9rem;
             color: var(--color-text-dark);
             font-style: italic;
         }
 
-        .collectible-link {
+        .trophy-link {
             padding: 0.5rem 1rem;
-            background: rgba(212, 175, 55, 0.2);
-            border: 1px solid var(--color-primary);
+            background: rgba(218, 165, 32, 0.2);
+            border: 1px solid #daa520;
             border-radius: 4px;
-            color: var(--color-primary);
+            color: #daa520;
             text-decoration: none;
             font-family: var(--font-display);
             font-size: 0.9rem;
@@ -136,8 +136,8 @@
             white-space: nowrap;
         }
 
-        .collectible-link:hover {
-            background: var(--color-primary);
+        .trophy-link:hover {
+            background: #daa520;
             color: var(--color-background);
         }
 
@@ -172,7 +172,7 @@
                 <span class="title-clair">Clair</span>
                 <span class="title-obscur">Obscur</span>
             </h1>
-            <p class="site-subtitle">Todos Colecionáveis</p>
+            <p class="site-subtitle">Troféus</p>
             <div class="header-divider"></div>
         </header>
 
@@ -180,8 +180,8 @@
             <ul class="nav-list">
                 <li><a href="index.html" class="nav-link">Início</a></li>
                 <li><a href="playthrough.html" class="nav-link">Atos</a></li>
-                <li><a href="colecionaveis.html" class="nav-link active">Colecionáveis</a></li>
-                <li><a href="trofeus.html" class="nav-link">Troféus</a></li>
+                <li><a href="colecionaveis.html" class="nav-link">Colecionáveis</a></li>
+                <li><a href="trofeus.html" class="nav-link active">Troféus</a></li>
             </ul>
         </nav>
 
@@ -189,9 +189,9 @@
             ← Voltar ao Início
         </a>
 
-        <div class="collectibles-content" id="collectiblesContent">
+        <div class="trophies-content" id="trophiesContent">
             <div class="empty-message">
-                Carregando coletáveis da playthrough...
+                Carregando troféus da playthrough...
             </div>
         </div>
 
@@ -205,47 +205,46 @@
     </div>
 
     <script>
-        async function loadCollectibles() {
+        async function loadTrophies() {
             try {
                 const response = await fetch('playthrough.html');
                 const html = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
 
-                const collectibles = Array.from(doc.querySelectorAll('.collectible[data-type]:not([data-type="trofeu"])')).map(el => ({
+                const trophies = Array.from(doc.querySelectorAll('.collectible[data-type="trofeu"]')).map(el => ({
                     id: el.id,
                     name: el.textContent.trim(),
-                    type: el.dataset.type,
                     chapter: el.dataset.chapter,
                     map: el.dataset.map,
                     icon: el.dataset.icon
                 }));
 
-                if (collectibles.length === 0) {
-                    document.getElementById('collectiblesContent').innerHTML = `
+                if (trophies.length === 0) {
+                    document.getElementById('trophiesContent').innerHTML = `
                         <div class="empty-message">
-                            Nenhum coletável encontrado ainda. Continue escrevendo a playthrough!
+                            Nenhum troféu encontrado ainda. Continue escrevendo a playthrough!
                         </div>
                     `;
                     return;
                 }
 
-                const grouped = groupCollectibles(collectibles);
-                renderCollectibles(grouped);
+                const grouped = groupTrophies(trophies);
+                renderTrophies(grouped);
             } catch (error) {
-                console.error('Erro ao carregar coletáveis:', error);
-                document.getElementById('collectiblesContent').innerHTML = `
+                console.error('Erro ao carregar troféus:', error);
+                document.getElementById('trophiesContent').innerHTML = `
                     <div class="empty-message">
-                        Erro ao carregar coletáveis. Verifique se a playthrough existe.
+                        Erro ao carregar troféus. Verifique se a playthrough existe.
                     </div>
                 `;
             }
         }
 
-        function groupCollectibles(collectibles) {
+        function groupTrophies(trophies) {
             const grouped = {};
 
-            collectibles.forEach(item => {
+            trophies.forEach(item => {
                 if (!grouped[item.chapter]) {
                     grouped[item.chapter] = {};
                 }
@@ -278,20 +277,8 @@
                 .join(' ');
         }
 
-        function formatTypeName(type) {
-            const names = {
-                'missao': 'Item de Missão',
-                'chromas': 'Chromas',
-                'pictos': 'Picto',
-                'luminas': 'Ponto de Lúmina',
-                'equipamento': 'Equipamento',
-                'interativo': 'Interativo'
-            };
-            return names[type] || type;
-        }
-
-        function renderCollectibles(grouped) {
-            const container = document.getElementById('collectiblesContent');
+        function renderTrophies(grouped) {
+            const container = document.getElementById('trophiesContent');
             let html = '';
 
             for (const [chapter, maps] of Object.entries(grouped)) {
@@ -301,17 +288,17 @@
                 for (const [map, items] of Object.entries(maps)) {
                     html += `<div class="map-group">`;
                     html += `<h3 class="map-title">${formatMapName(map)}</h3>`;
-                    html += `<div class="collectible-list">`;
+                    html += `<div class="trophy-list">`;
 
                     items.forEach(item => {
                         html += `
-                            <div class="collectible-item">
-                                <div class="collectible-icon">${item.icon}</div>
-                                <div class="collectible-info">
-                                    <div class="collectible-name">${item.name}</div>
-                                    <div class="collectible-type">${formatTypeName(item.type)}</div>
+                            <div class="trophy-item">
+                                <div class="trophy-icon">${item.icon}</div>
+                                <div class="trophy-info">
+                                    <div class="trophy-name">${item.name}</div>
+                                    <div class="trophy-type">Troféu</div>
                                 </div>
-                                <a href="playthrough.html#${item.id}" class="collectible-link">Ver na Playthrough →</a>
+                                <a href="playthrough.html#${item.id}" class="trophy-link">Ver na Playthrough →</a>
                             </div>
                         `;
                     });
@@ -326,7 +313,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            loadCollectibles();
+            loadTrophies();
 
             const hash = window.location.hash;
             if (hash) {
