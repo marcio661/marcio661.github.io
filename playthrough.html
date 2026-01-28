@@ -203,6 +203,11 @@
 </head>
 
 <body>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <div class="ornate-frame">
         <div class="frame-corner frame-top-left"></div>
         <div class="frame-corner frame-top-right"></div>
@@ -230,8 +235,8 @@
 
         <nav class="main-nav">
             <ul class="nav-list">
-                <li><a href="index.html" class="nav-link active">Início</a></li>
-                <li><a href="playthrough.html" class="nav-link">Atos</a></li>
+                <li><a href="index.html" class="nav-link">Início</a></li>
+                <li><a href="playthrough.html" class="nav-link active">Atos</a></li>
                 <li><a href="colecionaveis.html" class="nav-link">Colecionáveis</a></li>
                 <li><a href="trofeus.html" class="nav-link">Troféus</a></li>
                 <li><a href="audios.html" class="nav-link">Áudios</a></li>
@@ -1034,6 +1039,33 @@
                 }, 100);
             }
         });
+    </script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.querySelector('.main-nav');
+
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Fecha o menu ao clicar em um link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+
+            // Fecha o menu ao clicar fora dele
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 

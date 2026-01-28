@@ -127,6 +127,11 @@
 </head>
 
 <body>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <div class="ornate-frame">
         <div class="frame-corner frame-top-left"></div>
         <div class="frame-corner frame-top-right"></div>
@@ -307,6 +312,33 @@
                 backgroundTexture.style.transform = `translateY(${scrollTop * 0.3}px)`;
             }
         });
+    </script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.querySelector('.main-nav');
+
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Fecha o menu ao clicar em um link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+
+            // Fecha o menu ao clicar fora dele
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 
