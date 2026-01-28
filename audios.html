@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Troféus - Clair Obscur: Expedition 33</title>
-    <meta name="description" content="Lista completa de todos os troféus de Clair Obscur: Expedition 33.">
+    <title>Áudios de Expedição - Clair Obscur: Expedition 33</title>
+    <meta name="description" content="Lista completa de todos os áudios de expedição de Clair Obscur: Expedition 33.">
     <meta name="author" content="Marcio Luis Cipriano De Souza">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,33 +16,9 @@
     <link rel="icon" href="https://marcio661.github.io/assets/favicon.png" type="image/png">
 
     <style>
-        .trophies-content {
+        .audios-content {
             max-width: 1000px;
             margin: 0 auto;
-        }
-
-        .back-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, rgba(26, 26, 31, 0.9), rgba(13, 13, 15, 0.8));
-            border: 2px solid var(--color-border);
-            border-radius: 8px;
-            color: var(--color-accent);
-            text-decoration: none;
-            font-family: var(--font-display);
-            font-size: 1rem;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-            margin-bottom: 2rem;
-        }
-
-        .back-button:hover {
-            background: var(--color-primary);
-            color: var(--color-background);
-            border-color: var(--color-primary);
-            transform: translateX(-5px);
         }
 
         .chapter-section {
@@ -77,12 +53,12 @@
             letter-spacing: 0.05em;
         }
 
-        .trophy-list {
+        .audio-list {
             display: grid;
             gap: 0.8rem;
         }
 
-        .trophy-item {
+        .audio-item {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -93,41 +69,41 @@
             transition: all 0.3s ease;
         }
 
-        .trophy-item:hover {
-            background: rgba(218, 165, 32, 0.1);
-            border-color: #daa520;
+        .audio-item:hover {
+            background: rgba(255, 140, 0, 0.1);
+            border-color: #ffa07a;
             transform: translateX(5px);
         }
 
-        .trophy-icon {
+        .audio-icon {
             font-size: 2rem;
             min-width: 40px;
             text-align: center;
         }
 
-        .trophy-info {
+        .audio-info {
             flex: 1;
         }
 
-        .trophy-name {
+        .audio-name {
             font-size: 1.1rem;
             font-weight: 600;
             color: var(--color-text);
             margin-bottom: 0.3rem;
         }
 
-        .trophy-type {
+        .audio-type {
             font-size: 0.9rem;
             color: var(--color-text-dark);
             font-style: italic;
         }
 
-        .trophy-link {
+        .audio-link {
             padding: 0.5rem 1rem;
-            background: rgba(218, 165, 32, 0.2);
-            border: 1px solid #daa520;
+            background: rgba(255, 140, 0, 0.2);
+            border: 1px solid #ffa07a;
             border-radius: 4px;
-            color: #daa520;
+            color: #ffa07a;
             text-decoration: none;
             font-family: var(--font-display);
             font-size: 0.9rem;
@@ -136,8 +112,8 @@
             white-space: nowrap;
         }
 
-        .trophy-link:hover {
-            background: #daa520;
+        .audio-link:hover {
+            background: #ffa07a;
             color: var(--color-background);
         }
 
@@ -172,24 +148,24 @@
                 <span class="title-clair">Clair</span>
                 <span class="title-obscur">Obscur</span>
             </h1>
-            <p class="site-subtitle">Troféus</p>
+            <p class="site-subtitle">Áudios de Expedição</p>
             <div class="header-divider"></div>
         </header>
 
         <nav class="main-nav">
             <ul class="nav-list">
-                <li><a href="index.html" class="nav-link active">Início</a></li>
+                <li><a href="index.html" class="nav-link">Início</a></li>
                 <li><a href="playthrough.html" class="nav-link">Atos</a></li>
                 <li><a href="colecionaveis.html" class="nav-link">Colecionáveis</a></li>
                 <li><a href="trofeus.html" class="nav-link">Troféus</a></li>
-                <li><a href="audios.html" class="nav-link">Áudios</a></li>
+                <li><a href="audios.html" class="nav-link active">Áudios</a></li>
                 <li><a href="cds.html" class="nav-link">CDs</a></li>
             </ul>
         </nav>
 
-        <div class="trophies-content" id="trophiesContent">
+        <div class="audios-content" id="audiosContent">
             <div class="empty-message">
-                Carregando troféus da playthrough...
+                Carregando áudios de expedição da playthrough...
             </div>
         </div>
 
@@ -203,14 +179,14 @@
     </div>
 
     <script>
-        async function loadTrophies() {
+        async function loadAudios() {
             try {
                 const response = await fetch('playthrough.html');
                 const html = await response.text();
                 const parser = new DOMParser();
                 const doc = parser.parseFromString(html, 'text/html');
 
-                const trophies = Array.from(doc.querySelectorAll('.collectible[data-type="trofeu"]')).map(el => ({
+                const audios = Array.from(doc.querySelectorAll('.collectible[data-type="audio"]')).map(el => ({
                     id: el.id,
                     name: el.textContent.trim(),
                     chapter: el.dataset.chapter,
@@ -218,30 +194,31 @@
                     icon: el.dataset.icon
                 }));
 
-                if (trophies.length === 0) {
-                    document.getElementById('trophiesContent').innerHTML = `
+                if (audios.length === 0) {
+                    document.getElementById('audiosContent').innerHTML = `
                         <div class="empty-message">
+                            Nenhum áudio de expedição encontrado ainda. Continue escrevendo a playthrough!
                         </div>
                     `;
                     return;
                 }
 
-                const grouped = groupTrophies(trophies);
-                renderTrophies(grouped);
+                const grouped = groupAudios(audios);
+                renderAudios(grouped);
             } catch (error) {
-                console.error('Erro ao carregar troféus:', error);
-                document.getElementById('trophiesContent').innerHTML = `
+                console.error('Erro ao carregar áudios:', error);
+                document.getElementById('audiosContent').innerHTML = `
                     <div class="empty-message">
-                        Erro ao carregar troféus. Verifique se a playthrough existe.
+                        Erro ao carregar áudios. Verifique se a playthrough existe.
                     </div>
                 `;
             }
         }
 
-        function groupTrophies(trophies) {
+        function groupAudios(audios) {
             const grouped = {};
 
-            trophies.forEach(item => {
+            audios.forEach(item => {
                 if (!grouped[item.chapter]) {
                     grouped[item.chapter] = {};
                 }
@@ -274,8 +251,8 @@
                 .join(' ');
         }
 
-        function renderTrophies(grouped) {
-            const container = document.getElementById('trophiesContent');
+        function renderAudios(grouped) {
+            const container = document.getElementById('audiosContent');
             let html = '';
 
             for (const [chapter, maps] of Object.entries(grouped)) {
@@ -285,17 +262,17 @@
                 for (const [map, items] of Object.entries(maps)) {
                     html += `<div class="map-group">`;
                     html += `<h3 class="map-title">${formatMapName(map)}</h3>`;
-                    html += `<div class="trophy-list">`;
+                    html += `<div class="audio-list">`;
 
                     items.forEach(item => {
                         html += `
-                            <div class="trophy-item">
-                                <div class="trophy-icon">${item.icon}</div>
-                                <div class="trophy-info">
-                                    <div class="trophy-name">${item.name}</div>
-                                    <div class="trophy-type">Troféu</div>
+                            <div class="audio-item">
+                                <div class="audio-icon">${item.icon}</div>
+                                <div class="audio-info">
+                                    <div class="audio-name">${item.name}</div>
+                                    <div class="audio-type">Áudio de Expedição</div>
                                 </div>
-                                <a href="playthrough.html#${item.id}" class="trophy-link">Ver na Playthrough →</a>
+                                <a href="playthrough.html#${item.id}" class="audio-link">Ver na Playthrough →</a>
                             </div>
                         `;
                     });
@@ -310,7 +287,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            loadTrophies();
+            loadAudios();
 
             const hash = window.location.hash;
             if (hash) {
