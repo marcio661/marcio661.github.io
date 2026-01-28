@@ -595,6 +595,7 @@ body {
     margin-bottom: var(--spacing-sm);
     filter: grayscale(0.3) brightness(1.2);
     transition: all 0.3s ease;
+    flex-shrink: 0;
 }
 
 .info-card:hover .card-icon {
@@ -608,6 +609,10 @@ body {
     color: var(--color-primary);
     margin-bottom: var(--spacing-sm);
     letter-spacing: 0.05em;
+    min-height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-description {
@@ -615,6 +620,7 @@ body {
     margin-bottom: var(--spacing-md);
     font-size: 1rem;
     line-height: 1.6;
+    flex-grow: 1;
 }
 
 .card-link {
