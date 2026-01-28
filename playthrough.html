@@ -51,6 +51,36 @@
             margin-bottom: 1.5rem;
         }
 
+        .map-collectibles-summary {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 3px solid var(--color-primary);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 4px;
+        }
+
+        .map-collectibles-summary h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--color-accent);
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.05em;
+        }
+
+        .map-collectibles-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .map-collectibles-summary li {
+            color: var(--color-text);
+            font-size: 1rem;
+        }
+
         .collectible {
             display: inline-flex;
             align-items: center;
@@ -217,17 +247,289 @@
                 <h2 class="chapter-title">Prólogo</h2>
 
                 <div class="map-section" data-map="lumiere">
-                    <h3 class="map-title">Lumière</h3>
-                    <div class="playthrough-text">
-                        <p id="intro-1">
-                            Estamos jogando com Gustave, logo de início vire à esquerda para pegar o item
-                            <a href="colecionaveis.html#coll-flor-sophie" class="collectible" data-type="missao"
-                                data-chapter="prologo" data-map="lumiere" data-icon="📜" id="coll-flor-sophie">Uma flor
-                                para Sophie</a>,
-                            esse é um item de missão.
-                        </p>
+                    <div class="map-section" data-map="lumiere">
+                        <h3 class="map-title">Lumière</h3>
+
+                        <div class="map-collectibles-summary">
+                            <h4>Itens neste mapa:</h4>
+                            <ul>
+                                <li>🎨 125 Chromas (x4)</li>
+                                <li>⭐ Tom de Lumina (x2)</li>
+                                <li>📜 Uma Flor para Sophie</li>
+                                <li>📜 Um uniforme para o filho de Richard</li>
+                                <li>📜 Ficha do Festival (x3)</li>
+                                <li>📜 Pictos Estranho</li>
+                                <li>📜 Chave Velha</li>
+                                <li>📜 Um Diário de Aprendizes de Gustave</li>
+                                <li>🖌️ Retoque</li>
+                                <li>⬆️ Catalisador de Chroma</li>
+                                <li>👔 Coque (corte de cabelo Gustave)</li>
+                                <li>👔 Uniforme Escalarte (traje Gustave)</li>
+                                <li>🎶 CD Lumière</li>
+                                <li>🏆 Quebre um Inimigo</li>
+                                <li>🏆 Sobrecarga</li>
+                                <li>🏆 Um Encontro Peculiar</li>
+                                <li>🏆 Lumière</li>
+                            </ul>
+                        </div>
+
+                        <div class="playthrough-text">
+                            <p>
+                                Começando o jogo, você controla o Gustave, que está olhando o horizonte. Vire-se à
+                                esquerda para pegar
+                                <a href="colecionaveis.html#coll-flor-sophie" class="collectible" data-type="missao"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="📜" id="coll-flor-sophie">Uma
+                                    Flor para Sophie</a>.
+                                Pegou o item? Então siga a Maelle.
+                            </p>
+
+                            <p>
+                                Ao encontrar os "grabs", aperte Quadrado ou X (dependendo do seu controle). Continue
+                                seguindo ela até que ela pare em uma espécie de passarela/ponte e se prepare para a
+                                luta.
+                            </p>
+
+                            <p>
+                                Nesse início, o Gustave tem duas habilidades: Assalto Lumériano e Sobrecarga. Cada golpe
+                                do Assalto Lumériano te dá 1 stack de Sobrecarga (até 10). Quanto mais stacks, mais dano
+                                a Sobrecarga causa. A ideia do Gustave é chegar em 10 stacks e então usar Sobrecarga.
+                            </p>
+
+                            <p>
+                                Começando a luta, use Assalto Lumériano para garantir 5 stacks (se algum hit critar,
+                                você ganha 2 stacks em vez de 1). Cada habilidade tem custo de PA. Você ganha PA quando
+                                começa o turno (ganha 1 PA) e quando contra-ataca um golpe (aperte R1 ou RB no momento
+                                em
+                                que o inimigo atacar).
+                            </p>
+
+                            <p>
+                                Se você estiver errando o timing do contra-ataque, recomendo diminuir a dificuldade,
+                                porque a janela de tempo aumenta. Não se preocupe com troféus: você não perde nenhum por
+                                jogar no fácil. Divirta-se :)
+                            </p>
+
+                            <p>
+                                No canto esquerdo da luta, você vê a ordem de jogadas (é um jogo de turno). Repare que
+                                os turnos alternam entre você e a Maelle. Depois do seu Assalto Lumériano, espere a
+                                Maelle atacar. Se você contra-atacar, além de ganhar 1 PA, você também ganha 1 carga de
+                                Sobrecarga. Você ainda ganha mais 1 carga por cada golpe em que acertar o timing da
+                                defesa.
+                            </p>
+
+                            <p>
+                                Esquivar (O ou B) é mais fácil do que aparar, mas você não ganha PA. Considerando que
+                                nenhum golpe do Assalto Lumériano critou e você defendeu o primeiro golpe da Maelle, o
+                                Gustave começa o segundo turno com 7 stacks de Sobrecarga e 3 PA. No segundo turno, faça
+                                Ataque normal (sem habilidade) para ganhar mais 1 stack e mais 1 PA.
+                            </p>
+
+                            <p>
+                                Depois disso, a Maelle vai te dar uma sequência de 3 golpes. Se você aparar todos, o
+                                Gustave fica com 10 cargas de Sobrecarga e 8 PA. Aí é só usar Sobrecarga para finalizar
+                                a luta e receber
+                                <a href="colecionaveis.html#coll-lumina-1" class="collectible" data-type="luminas"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="⭐" id="coll-lumina-1">Tom de
+                                    Lumina</a>.
+                            </p>
+
+                            <p>
+                                Continue seguindo a Maelle até aparecer uma corda. Interaja com a corda e desça. Ande um
+                                pouco para a esquerda e vai começar uma cutscene. Ao final, você controlará a Sophie.
+                            </p>
+
+                            <p>
+                                Você pode pressionar L3 ou Left Stick (Analógico esquerdo) para mudar de personagem.
+                                Isso afeta apenas quem você está controlando ao andar.
+                            </p>
+
+                            <p>
+                                Após a cutscene, vá pela direita até encontrar um brilho no chão. Interaja para ganhar
+                                <a href="colecionaveis.html#coll-chromas-1" class="collectible" data-type="chromas"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🎨" id="coll-chromas-1">125
+                                    chromas</a>.
+                            </p>
+
+                            <p>
+                                Continue seguindo até encontrar uma mulher em frente a uma banca. Interaja com ela se
+                                quiser e, depois disso, siga o caminho. Na bifurcação, siga à direita e continue em
+                                frente. Na próxima bifurcação, pegue a direita até encontrar madeiras empilhadas
+                                formando uma estrutura. Procure a mais baixa, suba nela, depois suba na próxima e, por
+                                fim, dê um salto para alcançar o próximo item:
+                                <a href="colecionaveis.html#coll-chromas-2" class="collectible" data-type="chromas"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🎨" id="coll-chromas-2">125
+                                    chromas</a>.
+                            </p>
+
+                            <p>
+                                Desça e pegue o caminho à esquerda até encontrar uma pilha de objetos. Interaja para
+                                obter
+                                <a href="colecionaveis.html#coll-lumina-2" class="collectible" data-type="luminas"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="⭐" id="coll-lumina-2">Tom de
+                                    Lumina</a>.
+                                Volte pelo caminho e, ao encontrar um homem com roupa vermelha, fale com ele (Richard).
+                                Ao fim da conversa, ele te dará
+                                <a href="colecionaveis.html#coll-uniforme-richard" class="collectible"
+                                    data-type="missao" data-chapter="prologo" data-map="lumiere" data-icon="📜"
+                                    id="coll-uniforme-richard">Um uniforme para o filho de Richard</a>.
+                            </p>
+
+                            <p>
+                                Siga pelo caminho até encontrar uma mulher de braços cruzados em frente a uma
+                                arquibancada, com 4 pessoas em pé. Fale com ela (Eloise). Após a conversa, o Gustave
+                                lutará contra um balão (sim, um balão).
+                            </p>
+
+                            <p>
+                                Para vencer, você precisa juntar 10 cargas de Sobrecarga e usar a habilidade Sobrecarga.
+                                Enquanto você não fizer isso, o balão sempre vai se curar em 100% do HP. Ao final da
+                                luta, você recebe
+                                <a href="colecionaveis.html#coll-lumina-3" class="collectible" data-type="luminas"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="⭐" id="coll-lumina-3">Tom de
+                                    Lumina</a>.
+                            </p>
+
+                            <p>
+                                Depois, siga o caminho. Você pode interagir com quem quiser; não interagir não te faz
+                                perder nenhum item. Quando o corredor de pessoas acabar, vá para o lado direito até
+                                encontrar uma escada. Suba e, ao final, pegue mais
+                                <a href="colecionaveis.html#coll-chromas-3" class="collectible" data-type="chromas"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🎨" id="coll-chromas-3">125
+                                    chromas</a>.
+                                Vire-se à esquerda e pule pela abertura da grade.
+                            </p>
+
+                            <p>
+                                Ao descer, procure o Nicolas, parado em frente a um canvas de pintura. Ele não dá um
+                                item extremamente importante,
+                                mas falar com ele rende uma interação legal mais pra frente. Você vai "lutar" contra a
+                                Sophie (tutorial de esquiva): é só apertar o botão de esquiva quando ela entrar em
+                                câmera lenta. Ao final, ele pinta um quadro. Depois disso, você ganha
+                                <a href="colecionaveis.html#coll-retoque-1" class="collectible" data-type="interativo"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🖌️"
+                                    id="coll-retoque-1">Retoque</a>.
+                            </p>
+
+                            <p>
+                                Vire-se à direita e interaja com uma lata de lixo à esquerda, ao lado das escadas.
+                                Interaja 4x com ela para ganhar
+                                <a href="colecionaveis.html#coll-catalisador-1" class="collectible"
+                                    data-type="equipamento" data-chapter="prologo" data-map="lumiere" data-icon="⬆️"
+                                    id="coll-catalisador-1">Catalisador de Chroma</a>.
+                            </p>
+
+                            <p>
+                                Volte pelo corredor de pessoas e, na bifurcação, pegue o caminho à esquerda. Siga até o
+                                final e pegue mais
+                                <a href="colecionaveis.html#coll-chromas-4" class="collectible" data-type="chromas"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🎨" id="coll-chromas-4">125
+                                    chromas</a>.
+                                Feito isso, vire-se e vá até o lado oposto, seguindo pela direita até achar umas
+                                bailarinas. Continue indo pela direita até ver uma espécie de mímico. Interaja com ele
+                                para iniciar uma luta.
+                            </p>
+
+                            <p>
+                                Os mímicos têm defesa altíssima. Você precisa quebrá-los para derrubar a defesa. Para
+                                quebrar, você deve preencher a barra que fica abaixo do HP do inimigo; quando ela
+                                estiver cheia, use uma habilidade de Quebra. No caso do Gustave, é a Sobrecarga.
+                            </p>
+
+                            <p>
+                                Aqui é simples: use Sobrecarga apenas quando você estiver com 10 cargas e com a barra de
+                                resiliência do mímico carregada (contra-ataques enchem mais rápido). Se você fizer
+                                certinho, assim que o mímico ficar tonto você ganha 2 troféus:
+                                <a href="trofeus.html#trof-quebre-inimigo" class="collectible" data-type="trofeu"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🏆"
+                                    id="trof-quebre-inimigo">Quebre um Inimigo</a> e
+                                <a href="trofeus.html#trof-sobrecarga" class="collectible" data-type="trofeu"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🏆"
+                                    id="trof-sobrecarga">Sobrecarga</a>.
+                            </p>
+
+                            <p>
+                                Ao vencer a luta, você ganha mais um troféu,
+                                <a href="trofeus.html#trof-encontro-peculiar" class="collectible" data-type="trofeu"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🏆"
+                                    id="trof-encontro-peculiar">Um Encontro Peculiar</a>, e
+                                <a href="colecionaveis.html#coll-cd-lumiere" class="collectible" data-type="interativo"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🎶" id="coll-cd-lumiere">CD de
+                                    música Lumière</a>.
+                            </p>
+
+                            <p>
+                                Quando estiver pronto, siga o caminho escadas abaixo para iniciar uma cutscene. De volta
+                                ao controle do Gustave, você já começa ganhando
+                                <a href="colecionaveis.html#coll-ficha-1" class="collectible" data-type="missao"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="📜" id="coll-ficha-1">Ficha do
+                                    Festival</a>.
+                                Desça as escadas e vá pelo canto esquerdo para falar com um cara parado em frente a uma
+                                espécie de jarro com um brilho em cima (Tom). Troque a ficha para receber
+                                <a href="colecionaveis.html#coll-pictos-estranho" class="collectible" data-type="missao"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="📜"
+                                    id="coll-pictos-estranho">Pictos Estranho</a>, que usaremos mais tarde.
+                            </p>
+
+                            <p>
+                                Agora procure um cara parado em frente a uma mesa longa com um lampião em cima. Fale com
+                                ele para iniciar um quiz. As respostas, na ordem, são: "67 anos atrás", "Expedição
+                                Zero", "Habilidades que você obtém após usar um Pictos em combate várias vezes".
+                                Respondendo certo, você ganha
+                                <a href="colecionaveis.html#coll-ficha-2" class="collectible" data-type="missao"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="📜" id="coll-ficha-2">Ficha do
+                                    Festival</a>.
+                            </p>
+
+                            <p>
+                                Volte até o Tom. Do lado esquerdo dele, há uma moça estilosa chamada Amandine. Troque
+                                sua ficha por um novo corte de cabelo para o Gustave, chamado
+                                <a href="colecionaveis.html#coll-coque" class="collectible" data-type="interativo"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="👔" id="coll-coque">Coque</a>.
+                            </p>
+
+                            <p>
+                                Vire-se e você verá um caminho onde dá para ver uma pessoa olhando o mar. Antes de falar
+                                com ela, fale com um menino encostado do lado esquerdo, chamado Jules. Você vai trocar a
+                                roupa que pegou antes com o pai dele e ganhar
+                                <a href="colecionaveis.html#coll-uniforme-escalarte" class="collectible"
+                                    data-type="interativo" data-chapter="prologo" data-map="lumiere" data-icon="👔"
+                                    id="coll-uniforme-escalarte">Uniforme Escalarte</a>.
+                            </p>
+
+                            <p>
+                                Agora sim, desça até o porto e fale com a Maelle para iniciar uma luta. Mesmo esquema de
+                                antes: ao vencer, você recebe
+                                <a href="colecionaveis.html#coll-ficha-3" class="collectible" data-type="missao"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="📜" id="coll-ficha-3">Ficha do
+                                    Festival</a>.
+                            </p>
+
+                            <p>
+                                Volte e fale com a última pessoa, na banca que fica na ponta direita, à direita da
+                                Amandine. Troque sua ficha por
+                                <a href="colecionaveis.html#coll-chave-velha" class="collectible" data-type="missao"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="📜" id="coll-chave-velha">Chave
+                                    Velha</a>.
+                            </p>
+
+                            <p>
+                                Depois disso, interaja com quem você quiser. Quando quiser avançar com a história, fale
+                                com os 3 meninos que estão juntos. Você receberá
+                                <a href="colecionaveis.html#coll-diario-aprendizes" class="collectible"
+                                    data-type="missao" data-chapter="prologo" data-map="lumiere" data-icon="📜"
+                                    id="coll-diario-aprendizes">Um Diário de Aprendizes de Gustave</a>.
+                                Em seguida, a irmã do Gustave aparecerá. Fale com ela para iniciar uma cutscene que
+                                encerra o prólogo e desbloqueia o troféu
+                                <a href="trofeus.html#trof-lumiere" class="collectible" data-type="trofeu"
+                                    data-chapter="prologo" data-map="lumiere" data-icon="🏆"
+                                    id="trof-lumiere">Lumière</a>,
+                                dando início ao Ato 1.
+                            </p>
+                        </div>
                     </div>
-                </div>
+
+            </section>
+
 
             </section>
 
