@@ -996,14 +996,14 @@ body {
         right: 0;
     }
 
-    /* Lista em coluna */
+
     .main-nav .nav-list {
         flex-direction: column;
         align-items: stretch;
         gap: 0.5rem;
     }
 
-    /* Links em bloco */
+
     .main-nav .nav-link {
         display: block;
         padding: 1rem 1.5rem;
@@ -1017,7 +1017,7 @@ body {
         transform: translateX(10px);
     }
 
-    /* Overlay escuro quando menu está aberto */
+
     .main-nav::before {
         content: '';
         position: fixed;
@@ -1038,9 +1038,7 @@ body {
     }
 }
 
-/* ===================================
-   TABLETS MÉDIOS (768px ou menos)
-   =================================== */
+
 
 @media (max-width: 768px) {
     .hamburger {
@@ -1053,9 +1051,7 @@ body {
     }
 }
 
-/* ===================================
-   SMARTPHONES (480px ou menos)
-   =================================== */
+
 
 @media (max-width: 480px) {
     .hamburger {
@@ -1080,9 +1076,7 @@ body {
     }
 }
 
-/* ===================================
-   SMARTPHONES PEQUENOS (360px ou menos)
-   =================================== */
+
 
 @media (max-width: 360px) {
     .main-nav {
@@ -1095,11 +1089,7 @@ body {
     }
 }
 
-/* ===================================
-   ACESSIBILIDADE
-   =================================== */
 
-/* Foco visível para navegação por teclado */
 .hamburger:focus {
     outline: 2px solid var(--color-primary, #d4af37);
     outline-offset: 4px;
@@ -1109,7 +1099,7 @@ body {
     outline: none;
 }
 
-/* Melhorar contraste em modo de alto contraste */
+
 @media (prefers-contrast: high) {
     .hamburger span {
         background: #ffffff;
@@ -1124,7 +1114,7 @@ body {
     }
 }
 
-/* Reduzir movimento para usuários com preferência */
+
 @media (prefers-reduced-motion: reduce) {
 
     .hamburger,
@@ -1136,11 +1126,6 @@ body {
     }
 }
 
-/* ===================================
-   AJUSTES ADICIONAIS
-   =================================== */
-
-/* Garantir que o header não interfira */
 @media (max-width: 900px) {
     .site-header {
         padding: 1rem;
@@ -1155,7 +1140,7 @@ body {
     }
 }
 
-/* Scrollbar customizada para o menu mobile (opcional) */
+
 @media (max-width: 900px) {
     .main-nav::-webkit-scrollbar {
         width: 6px;
@@ -1172,5 +1157,250 @@ body {
 
     .main-nav::-webkit-scrollbar-thumb:hover {
         background: rgba(212, 175, 55, 0.5);
+    }
+}
+
+.audio-item,
+.cd-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(13, 13, 15, 0.5);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    /* IMPORTANTE: Impede quebra em telas pequenas */
+    flex-wrap: nowrap;
+    min-height: 80px;
+}
+
+/* Container do ícone - tamanho fixo */
+.audio-icon,
+.cd-icon {
+    font-size: 2rem;
+    min-width: 40px;
+    max-width: 40px;
+    text-align: center;
+    flex-shrink: 0;
+    /* Não encolhe */
+}
+
+
+.audio-info,
+.cd-info {
+    flex: 1;
+    min-width: 0;
+    /* Permite quebra de texto */
+    overflow: hidden;
+}
+
+
+.audio-name,
+.cd-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.3rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Tipo - mantém em uma linha */
+.audio-type,
+.cd-type {
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+    font-style: italic;
+    white-space: nowrap;
+}
+
+
+.audio-link,
+.cd-link {
+    padding: 0.5rem 1rem;
+    border: 1px solid;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    /* IMPORTANTE: Não encolhe */
+    display: inline-block;
+    text-align: center;
+}
+
+
+.audio-item:hover {
+    background: rgba(255, 140, 0, 0.1);
+    border-color: #ffa07a;
+    transform: translateX(5px);
+}
+
+.audio-link {
+    background: rgba(255, 140, 0, 0.2);
+    border-color: #ffa07a;
+    color: #ffa07a;
+}
+
+.audio-link:hover {
+    background: #ffa07a;
+    color: var(--color-background);
+}
+
+
+.cd-item:hover {
+    background: rgba(147, 112, 219, 0.1);
+    border-color: #b8a3d4;
+    transform: translateX(5px);
+}
+
+.cd-link {
+    background: rgba(147, 112, 219, 0.2);
+    border-color: #b8a3d4;
+    color: #b8a3d4;
+}
+
+.cd-link:hover {
+    background: #b8a3d4;
+    color: var(--color-background);
+}
+
+@media (max-width: 768px) {
+
+    .audio-item,
+    .cd-item {
+        gap: 0.75rem;
+        padding: 0.875rem;
+    }
+
+    .audio-icon,
+    .cd-icon {
+        font-size: 1.75rem;
+        min-width: 35px;
+        max-width: 35px;
+    }
+
+    .audio-name,
+    .cd-name {
+        font-size: 1rem;
+    }
+
+    .audio-type,
+    .cd-type {
+        font-size: 0.85rem;
+    }
+
+    .audio-link,
+    .cd-link {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.85rem;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .audio-item,
+    .cd-item {
+
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .audio-icon,
+    .cd-icon {
+        font-size: 1.5rem;
+        min-width: 30px;
+        max-width: 30px;
+    }
+
+    .audio-name,
+    .cd-name {
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+
+    .audio-type,
+    .cd-type {
+        font-size: 0.8rem;
+    }
+
+    .audio-link,
+    .cd-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+
+    }
+}
+
+
+@media (max-width: 360px) {
+
+    .audio-item,
+    .cd-item {
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        padding: 0.875rem;
+    }
+
+    .audio-icon,
+    .cd-icon {
+        align-self: center;
+        font-size: 2rem;
+    }
+
+    .audio-info,
+    .cd-info {
+        width: 100%;
+        text-align: center;
+    }
+
+    .audio-link,
+    .cd-link {
+        width: 100%;
+        padding: 0.625rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .audio-item:hover,
+    .cd-item:hover {
+        transform: translateY(-3px);
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .audio-name,
+    .cd-name {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        line-clamp: 2;
+    }
+}
+
+
+
+@media (min-width: 1200px) {
+
+    .audio-item,
+    .cd-item {
+        gap: 1.25rem;
+        padding: 1.25rem;
+    }
+
+    .audio-link,
+    .cd-link {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.95rem;
     }
 }
