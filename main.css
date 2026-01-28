@@ -867,3 +867,207 @@ body {
     background: var(--color-primary);
     color: var(--color-background);
 }
+
+/* ===================================
+   MENU HAMBÚRGUER - ESTILOS RESPONSIVOS
+   =================================== */
+
+/* Botão Hambúrguer - Escondido por padrão em desktop */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background: var(--color-primary, #d4af37);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+/* Animação do hambúrguer quando ativo (transforma em X) */
+.hamburger.active span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+
+    /* Mostrar o botão hambúrguer */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Esconder a navegação por padrão */
+    .main-nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: linear-gradient(135deg, rgba(26, 26, 31, 0.98), rgba(13, 13, 15, 0.98));
+        backdrop-filter: blur(10px);
+        border-left: 2px solid var(--color-border, #8b7355);
+        padding: 5rem 2rem 2rem;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1000;
+        overflow-y: auto;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Mostrar navegação quando ativa */
+    .main-nav.active {
+        right: 0;
+    }
+
+    /* Lista de navegação em coluna */
+    .main-nav .nav-list {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Estilizar os links */
+    .main-nav .nav-link {
+        display: block;
+        padding: 1rem 1.5rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .main-nav .nav-link:hover,
+    .main-nav .nav-link.active {
+        background: rgba(212, 175, 55, 0.2);
+        transform: translateX(10px);
+    }
+
+    /* Overlay escuro quando menu está aberto */
+    .main-nav::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: -1;
+    }
+
+    .main-nav.active::before {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+/* Smartphones pequenos (max-width: 480px) */
+@media (max-width: 480px) {
+    .hamburger {
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .main-nav {
+        width: 250px;
+        padding: 4rem 1.5rem 1.5rem;
+    }
+
+    .main-nav .nav-link {
+        font-size: 1rem;
+        padding: 0.875rem 1.25rem;
+    }
+}
+
+
+/* Garantir que o header não interfira com o botão */
+@media (max-width: 768px) {
+    .site-header {
+        padding: 1rem;
+    }
+
+    .site-title {
+        font-size: 2rem;
+    }
+
+    .site-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
+/* Melhorar experiência em telas muito pequenas */
+@media (max-width: 360px) {
+    .main-nav {
+        width: 220px;
+    }
+
+    .hamburger {
+        width: 28px;
+        height: 23px;
+    }
+
+    .hamburger span {
+        height: 2.5px;
+    }
+}
+
+/* ===================================
+   ACESSIBILIDADE
+   =================================== */
+
+/* Foco visível para navegação por teclado */
+.hamburger:focus {
+    outline: 2px solid var(--color-primary, #d4af37);
+    outline-offset: 4px;
+}
+
+.hamburger:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Melhorar contraste em modo de alto contraste */
+@media (prefers-contrast: high) {
+    .hamburger span {
+        background: #ffffff;
+    }
+
+    .main-nav {
+        border-left-width: 3px;
+    }
+}
+
+/* Reduzir movimento para usuários com preferência */
+@media (prefers-reduced-motion: reduce) {
+
+    .hamburger,
+    .hamburger span,
+    .main-nav,
+    .main-nav::before,
+    .nav-link {
+        transition: none;
+    }
+}
