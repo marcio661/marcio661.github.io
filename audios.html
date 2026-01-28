@@ -58,6 +58,7 @@
             gap: 0.8rem;
         }
 
+        /* CORREÇÃO APLICADA */
         .audio-item {
             display: flex;
             align-items: center;
@@ -67,6 +68,8 @@
             border: 1px solid var(--color-border);
             border-radius: 4px;
             transition: all 0.3s ease;
+            flex-wrap: nowrap;
+            /* NÃO deixa quebrar linha */
         }
 
         .audio-item:hover {
@@ -78,11 +81,18 @@
         .audio-icon {
             font-size: 2rem;
             min-width: 40px;
+            max-width: 40px;
+            /* Tamanho fixo */
             text-align: center;
+            flex-shrink: 0;
+            /* NUNCA encolhe */
         }
 
         .audio-info {
             flex: 1;
+            min-width: 0;
+            /* Permite encolher */
+            overflow: hidden;
         }
 
         .audio-name {
@@ -90,6 +100,8 @@
             font-weight: 600;
             color: var(--color-text);
             margin-bottom: 0.3rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .audio-type {
@@ -110,11 +122,45 @@
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
             white-space: nowrap;
+            /* NUNCA quebra */
+            flex-shrink: 0;
+            /* NUNCA encolhe - CHAVE! */
         }
 
         .audio-link:hover {
             background: #ffa07a;
             color: var(--color-background);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .audio-item {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+
+            .audio-link {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .audio-item {
+                gap: 0.5rem;
+                padding: 0.75rem;
+            }
+
+            .audio-icon {
+                font-size: 1.5rem;
+                min-width: 30px;
+                max-width: 30px;
+            }
+
+            .audio-link {
+                padding: 0.5rem 0.65rem;
+                font-size: 0.75rem;
+            }
         }
 
         .empty-message {
