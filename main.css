@@ -869,57 +869,111 @@ body {
 }
 
 /* ===================================
-   MENU HAMBÚRGUER - ESTILOS RESPONSIVOS
+   NAVEGAÇÃO RESPONSIVA - ESTILO STEAM
+   Horizontal no topo → Hambúrguer em telas menores
    =================================== */
 
-/* Botão Hambúrguer - Escondido por padrão em desktop */
+/* ===================================
+   DESKTOP - NAVEGAÇÃO HORIZONTAL
+   =================================== */
+
+/* Navegação horizontal por padrão */
+.main-nav {
+    width: 100%;
+    background: transparent;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.main-nav .nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.main-nav .nav-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    color: var(--color-accent, #c9a961);
+    text-decoration: none;
+    font-family: var(--font-display, 'Cinzel', serif);
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.main-nav .nav-link:hover {
+    color: var(--color-primary, #d4af37);
+    border-color: var(--color-primary, #d4af37);
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.main-nav .nav-link.active {
+    color: var(--color-primary, #d4af37);
+    border-color: var(--color-primary, #d4af37);
+    background: rgba(212, 175, 55, 0.15);
+}
+
+/* Esconder hambúrguer no desktop */
 .hamburger {
     display: none;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 30px;
-    height: 25px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1001;
-    position: fixed;
-    top: 1.5rem;
-    right: 1.5rem;
-    transition: all 0.3s ease;
 }
 
-.hamburger span {
-    width: 100%;
-    height: 3px;
-    background: var(--color-primary, #d4af37);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-    transform-origin: center;
-}
+/* ===================================
+   TABLETS E MOBILE - MENU HAMBÚRGUER
+   Ativa em telas menores que 900px
+   =================================== */
 
-/* Animação do hambúrguer quando ativo (transforma em X) */
-.hamburger.active span:nth-child(1) {
-    transform: translateY(11px) rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: translateY(-11px) rotate(-45deg);
-}
-
-@media (max-width: 768px) {
+@media (max-width: 900px) {
 
     /* Mostrar o botão hambúrguer */
     .hamburger {
         display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        z-index: 1001;
+        position: fixed;
+        top: 1.5rem;
+        right: 1.5rem;
+        transition: all 0.3s ease;
     }
 
-    /* Esconder a navegação por padrão */
+    .hamburger span {
+        width: 100%;
+        height: 3px;
+        background: var(--color-primary, #d4af37);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        transform-origin: center;
+    }
+
+    /* Animação do hambúrguer quando ativo (vira X) */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+    }
+
+    /* Transformar navegação em sidebar */
     .main-nav {
         position: fixed;
         top: 0;
@@ -930,6 +984,7 @@ body {
         backdrop-filter: blur(10px);
         border-left: 2px solid var(--color-border, #8b7355);
         padding: 5rem 2rem 2rem;
+        margin: 0;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1000;
         overflow-y: auto;
@@ -941,26 +996,24 @@ body {
         right: 0;
     }
 
-    /* Lista de navegação em coluna */
+    /* Lista em coluna */
     .main-nav .nav-list {
         flex-direction: column;
+        align-items: stretch;
         gap: 0.5rem;
-        padding: 0;
-        margin: 0;
     }
 
-    /* Estilizar os links */
+    /* Links em bloco */
     .main-nav .nav-link {
         display: block;
         padding: 1rem 1.5rem;
         font-size: 1.1rem;
+        text-align: left;
         border-radius: 8px;
-        transition: all 0.3s ease;
     }
 
     .main-nav .nav-link:hover,
     .main-nav .nav-link.active {
-        background: rgba(212, 175, 55, 0.2);
         transform: translateX(10px);
     }
 
@@ -972,7 +1025,7 @@ body {
         left: 0;
         width: 100vw;
         height: 100vh;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.6);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
@@ -985,11 +1038,35 @@ body {
     }
 }
 
-/* Smartphones pequenos (max-width: 480px) */
+/* ===================================
+   TABLETS MÉDIOS (768px ou menos)
+   =================================== */
+
+@media (max-width: 768px) {
+    .hamburger {
+        top: 1.25rem;
+        right: 1.25rem;
+    }
+
+    .main-nav {
+        width: 260px;
+    }
+}
+
+/* ===================================
+   SMARTPHONES (480px ou menos)
+   =================================== */
+
 @media (max-width: 480px) {
     .hamburger {
         top: 1rem;
         right: 1rem;
+        width: 28px;
+        height: 23px;
+    }
+
+    .hamburger span {
+        height: 2.5px;
     }
 
     .main-nav {
@@ -1003,35 +1080,18 @@ body {
     }
 }
 
+/* ===================================
+   SMARTPHONES PEQUENOS (360px ou menos)
+   =================================== */
 
-/* Garantir que o header não interfira com o botão */
-@media (max-width: 768px) {
-    .site-header {
-        padding: 1rem;
-    }
-
-    .site-title {
-        font-size: 2rem;
-    }
-
-    .site-subtitle {
-        font-size: 0.9rem;
-    }
-}
-
-/* Melhorar experiência em telas muito pequenas */
 @media (max-width: 360px) {
     .main-nav {
         width: 220px;
     }
 
     .hamburger {
-        width: 28px;
-        height: 23px;
-    }
-
-    .hamburger span {
-        height: 2.5px;
+        width: 26px;
+        height: 21px;
     }
 }
 
@@ -1058,6 +1118,10 @@ body {
     .main-nav {
         border-left-width: 3px;
     }
+
+    .main-nav .nav-link {
+        border-width: 2px;
+    }
 }
 
 /* Reduzir movimento para usuários com preferência */
@@ -1069,5 +1133,44 @@ body {
     .main-nav::before,
     .nav-link {
         transition: none;
+    }
+}
+
+/* ===================================
+   AJUSTES ADICIONAIS
+   =================================== */
+
+/* Garantir que o header não interfira */
+@media (max-width: 900px) {
+    .site-header {
+        padding: 1rem;
+    }
+
+    .site-title {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+    }
+
+    .site-subtitle {
+        font-size: clamp(0.8rem, 2.5vw, 1rem);
+    }
+}
+
+/* Scrollbar customizada para o menu mobile (opcional) */
+@media (max-width: 900px) {
+    .main-nav::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .main-nav::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .main-nav::-webkit-scrollbar-thumb {
+        background: rgba(212, 175, 55, 0.3);
+        border-radius: 3px;
+    }
+
+    .main-nav::-webkit-scrollbar-thumb:hover {
+        background: rgba(212, 175, 55, 0.5);
     }
 }
