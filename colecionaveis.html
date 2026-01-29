@@ -16,6 +16,20 @@
     <link rel="icon" href="https://marcio661.github.io/assets/favicon.png" type="image/png">
 
     <style>
+        @keyframes highlight-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            }
+
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+            }
+        }
+
         .collectibles-content {
             max-width: 1000px;
             margin: 0 auto;
@@ -310,7 +324,7 @@
 
                     items.forEach(item => {
                         html += `
-                            <div class="collectible-item">
+                            <div class="collectible-item" id="${item.id}">
                                 <div class="collectible-icon">${item.icon}</div>
                                 <div class="collectible-info">
                                     <div class="collectible-name">${item.name}</div>
@@ -330,8 +344,8 @@
             container.innerHTML = html;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadCollectibles();
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadCollectibles();
 
             const hash = window.location.hash;
             if (hash) {
@@ -339,8 +353,9 @@
                     const element = document.querySelector(hash);
                     if (element) {
                         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        element.style.animation = 'highlight-pulse 2s ease-in-out';
                     }
-                }, 500);
+                }, 800);
             }
         });
 

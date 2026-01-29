@@ -16,6 +16,20 @@
     <link rel="icon" href="https://marcio661.github.io/assets/favicon.png" type="image/png">
 
     <style>
+        @keyframes highlight-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(147, 112, 219, 0.5);
+            }
+
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 30px rgba(147, 112, 219, 0.8);
+            }
+        }
+
         .cds-content {
             max-width: 1000px;
             margin: 0 auto;
@@ -58,7 +72,6 @@
             gap: 0.8rem;
         }
 
-        /* CORREÇÃO APLICADA */
         .cd-item {
             display: flex;
             align-items: center;
@@ -69,7 +82,6 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             flex-wrap: nowrap;
-            /* NÃO deixa quebrar linha */
         }
 
         .cd-item:hover {
@@ -82,16 +94,13 @@
             font-size: 2rem;
             min-width: 40px;
             max-width: 40px;
-            /* Tamanho fixo */
             text-align: center;
             flex-shrink: 0;
-            /* NUNCA encolhe */
         }
 
         .cd-info {
             flex: 1;
             min-width: 0;
-            /* Permite encolher */
             overflow: hidden;
         }
 
@@ -122,9 +131,7 @@
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
             white-space: nowrap;
-            /* NUNCA quebra */
             flex-shrink: 0;
-            /* NUNCA encolhe - CHAVE! */
         }
 
         .cd-link:hover {
@@ -132,7 +139,6 @@
             color: var(--color-background);
         }
 
-        /* RESPONSIVO */
         @media (max-width: 768px) {
             .cd-item {
                 gap: 0.75rem;
@@ -294,7 +300,8 @@
 
         function formatMapName(map) {
             const mapNames = {
-                'lumiere': 'Lumière'
+                'lumiere': 'Lumière',
+                'prados-primaveris-parte-1': 'Prados Primaveris Parte 1'
             };
             return mapNames[map] || map
                 .split('-')
@@ -317,7 +324,7 @@
 
                     items.forEach(item => {
                         html += `
-                            <div class="cd-item">
+                            <div class="cd-item" id="${item.id}">
                                 <div class="cd-icon">${item.icon}</div>
                                 <div class="cd-info">
                                     <div class="cd-name">${item.name}</div>
@@ -337,8 +344,8 @@
             container.innerHTML = html;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadCDs();
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadCDs();
 
             const hash = window.location.hash;
             if (hash) {
@@ -346,8 +353,9 @@
                     const element = document.querySelector(hash);
                     if (element) {
                         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        element.style.animation = 'highlight-pulse 2s ease-in-out';
                     }
-                }, 500);
+                }, 800);
             }
         });
 
@@ -369,7 +377,6 @@
                 nav.classList.toggle('active');
             });
 
-            // Fecha o menu ao clicar em um link
             document.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     hamburger.classList.remove('active');
@@ -377,7 +384,6 @@
                 });
             });
 
-            // Fecha o menu ao clicar fora dele
             document.addEventListener('click', (e) => {
                 if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
                     hamburger.classList.remove('active');

@@ -833,8 +833,10 @@ body {
     }
 
     .collectible-item,
-    .trophy-item {
-        flex-wrap: wrap;
+    .trophy-item,
+    .cd-item,
+    .audio-item {
+        flex-wrap: nowrap;
     }
 
     .collectible-info,
