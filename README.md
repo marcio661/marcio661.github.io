@@ -2,7 +2,7 @@
 
 Guia completo e detalhado de Clair Obscur: Expedition 33 com playthrough 100%, todos os colecionáveis, troféus e rotas otimizadas para platina.
 
-##  Sobre o Guia
+## Sobre o Guia
 
 Este guia oferece:
 - Playthrough completa ato por ato
@@ -13,24 +13,29 @@ Este guia oferece:
 
 ## Acesse o Guia
 
-[https://marcio661.github.io/](https://marcio661.github.io/)
+https://marcio661.github.io/
 
-##  Características
+## Características
 
 - Design inspirado na estética Belle Époque do jogo
 - Sistema de navegação interativa
-- Links bidirecionais entre playthrough e colecionáveis/troféus
+- Links bidirecionais entre playthrough e colecionáveis e troféus
 - Layout responsivo para desktop e mobile
 - Bordas ornamentadas temáticas
 
-##  Estrutura do Site
+## Estrutura do Site
 
-- `index.html` - Página inicial
-- `playthrough.html` - Playthrough completa
-- `colecionaveis.html` - Lista de todos os colecionáveis
-- `trofeus.html` - Lista de todos os troféus
-- `main.css` - Estilos do site
-- `script.js` - Funcionalidades interativas
+- `index.html` Página inicial
+- `playthrough.html` Playthrough completa
+- `colecionaveis.html` Lista de todos os colecionáveis
+- `trofeus.html` Lista de todos os troféus
+- `cds.html` Lista de todos os CDs de música
+- `audios.html` Lista de todos os áudios de expedição
+- `main.css` Estilos do site
+- `app.js` Funcionalidades e interações do site
+- `assets/` Imagens e recursos do tema do site
+- `Clair obscur fotos/` Prints usados no meio da playthrough
+- `google5c76aca4bd8fa977.html` Verificação do Google
 
 ## Copyright e Licença
 
