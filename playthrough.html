@@ -1319,7 +1319,7 @@
                         <p>
                             Agora volte até a bifurcação das escadas e suba as escadas à direita. Ao virar, haverá mais
                             escadas à direita. Suba tudo e, ao chegar no topo, olhe para a esquerda. Você verá o quadro
-                            conforme a imagem (Quadro_m_I.jpeg). Atravesse o quadro, porque é uma passagem secreta.
+                            conforme a imagem. Atravesse o quadro, porque é uma passagem secreta.
                         </p>
 
                         <figure class="playthrough-figure">
@@ -1834,58 +1834,7 @@
     </footer>
     </div>
 
-    <script>
-        const backgroundTexture = document.querySelector('.background-texture');
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (backgroundTexture) {
-                backgroundTexture.style.transform = `translateY(${scrollTop * 0.3}px)`;
-            }
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const hash = window.location.hash;
-            if (hash) {
-                setTimeout(() => {
-                    const element = document.querySelector(hash);
-                    if (element && element.classList.contains('collectible')) {
-                        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        element.classList.add('highlighted');
-                        setTimeout(() => {
-                            element.classList.remove('highlighted');
-                        }, 2000);
-                    }
-                }, 100);
-            }
-        });
-    </script>
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.querySelector('.main-nav');
-
-        if (hamburger && nav) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                nav.classList.toggle('active');
-            });
-
-            // Fecha o menu ao clicar em um link
-            document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    hamburger.classList.remove('active');
-                    nav.classList.remove('active');
-                });
-            });
-
-            // Fecha o menu ao clicar fora dele
-            document.addEventListener('click', (e) => {
-                if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
-                    hamburger.classList.remove('active');
-                    nav.classList.remove('active');
-                }
-            });
-        }
-    </script>
+    <script src="./app.js"></script>
 </body>
 
 </html>
