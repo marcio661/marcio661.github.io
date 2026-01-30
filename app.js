@@ -1,32 +1,24 @@
-// =============================================================================
-// CLAIR OBSCUR: EXPEDITION 33 - MAIN APPLICATION SCRIPT
-// =============================================================================
 
 console.log('%c🎮 Clair Obscur: Expedition 33 - Guia Completo', 'font-size: 20px; font-weight: bold; color: #d4af37;');
 console.log('%cBem-vindo(a) à expedição!', 'font-size: 14px; color: #c9a961;');
 
-// =============================================================================
-// NAVIGATION & SMOOTH SCROLL
-// =============================================================================
 
-// Smooth scroll for navigation links
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
 
-        // Only prevent default for anchor links
         if (href.startsWith('#')) {
             e.preventDefault();
 
-            // Remove active class from all links
+
             document.querySelectorAll('.nav-link').forEach(navLink => {
                 navLink.classList.remove('active');
             });
 
-            // Add active class to clicked link
+
             this.classList.add('active');
 
-            // Smooth scroll to section
+
             const targetId = href.substring(1);
             const targetSection = document.getElementById(targetId);
 
@@ -40,7 +32,7 @@ document.querySelectorAll('.nav-link').forEach(link => {
     });
 });
 
-// Card link smooth scroll
+
 document.querySelectorAll('.card-link').forEach(link => {
     link.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -61,7 +53,7 @@ document.querySelectorAll('.card-link').forEach(link => {
     });
 });
 
-// Update active nav link based on scroll position
+
 window.addEventListener('scroll', () => {
     const sections = document.querySelectorAll('section[id]');
     const scrollPosition = window.scrollY + 150;
@@ -82,11 +74,6 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// =============================================================================
-// SCROLL ANIMATIONS
-// =============================================================================
-
-// Intersection Observer for scroll animations
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -101,7 +88,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe all cards for animation on scroll
+
 document.querySelectorAll('.info-card').forEach((card, index) => {
     card.style.opacity = '0';
     card.style.transform = 'translateY(30px)';
@@ -109,11 +96,8 @@ document.querySelectorAll('.info-card').forEach((card, index) => {
     observer.observe(card);
 });
 
-// =============================================================================
-// PARALLAX & VISUAL EFFECTS
-// =============================================================================
 
-// Parallax effect for background
+
 let lastScrollTop = 0;
 const backgroundTexture = document.querySelector('.background-texture');
 
@@ -128,7 +112,7 @@ window.addEventListener('scroll', () => {
     lastScrollTop = scrollTop;
 });
 
-// Add hover effect sound feedback (visual only, no actual sound)
+
 document.querySelectorAll('.info-card, .nav-link').forEach(element => {
     element.addEventListener('mouseenter', function () {
         this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -161,7 +145,7 @@ window.addEventListener('scroll', () => {
 });
 
 // =============================================================================
-// HAMBURGER MENU
+// Modelo estadunidense de qualidade hamburguer de navegação        
 // =============================================================================
 
 const hamburger = document.getElementById('hamburger');
@@ -173,7 +157,7 @@ if (hamburger && nav) {
         nav.classList.toggle('active');
     });
 
-    // Close menu when clicking on a link
+
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
@@ -633,4 +617,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadCDs();
         handleHashNavigation();
     }
+
+    setTimeout(() => {
+        handleHashNavigation();
+    }, 300);
 });
