@@ -16,6 +16,20 @@
     <link rel="icon" href="https://marcio661.github.io/assets/favicon.png" type="image/png">
 
     <style>
+        @keyframes highlight-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+            }
+
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 30px rgba(218, 165, 32, 0.8);
+            }
+        }
+
         .trophies-content {
             max-width: 1000px;
             margin: 0 auto;
@@ -294,7 +308,7 @@
 
                     items.forEach(item => {
                         html += `
-                            <div class="trophy-item">
+                            <div class="trophy-item" id="${item.id}">
                                 <div class="trophy-icon">${item.icon}</div>
                                 <div class="trophy-info">
                                     <div class="trophy-name">${item.name}</div>
@@ -314,8 +328,8 @@
             container.innerHTML = html;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadTrophies();
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadTrophies();
 
             const hash = window.location.hash;
             if (hash) {
@@ -323,8 +337,9 @@
                     const element = document.querySelector(hash);
                     if (element) {
                         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        element.style.animation = 'highlight-pulse 2s ease-in-out';
                     }
-                }, 500);
+                }, 800);
             }
         });
 
