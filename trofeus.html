@@ -105,6 +105,7 @@
             border: 1px solid var(--color-border);
             border-radius: 4px;
             transition: all 0.3s ease;
+            flex-wrap: nowrap;
         }
 
         .trophy-item:hover {
@@ -116,11 +117,15 @@
         .trophy-icon {
             font-size: 2rem;
             min-width: 40px;
+            max-width: 40px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .trophy-info {
             flex: 1;
+            min-width: 0;
+            overflow: hidden;
         }
 
         .trophy-name {
@@ -148,6 +153,7 @@
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .trophy-link:hover {

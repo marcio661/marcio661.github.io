@@ -105,6 +105,7 @@
             border: 1px solid var(--color-border);
             border-radius: 4px;
             transition: all 0.3s ease;
+            flex-wrap: nowrap;
         }
 
         .collectible-item:hover {
@@ -116,11 +117,15 @@
         .collectible-icon {
             font-size: 2rem;
             min-width: 40px;
+            max-width: 40px;
             text-align: center;
+            flex-shrink: 0;
         }
 
         .collectible-info {
             flex: 1;
+            min-width: 0;
+            overflow: hidden;
         }
 
         .collectible-name {
@@ -148,6 +153,7 @@
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .collectible-link:hover {
