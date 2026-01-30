@@ -870,16 +870,7 @@ body {
     color: var(--color-background);
 }
 
-/* ===================================
-   NAVEGAÇÃO RESPONSIVA - ESTILO STEAM
-   Horizontal no topo → Hambúrguer em telas menores
-   =================================== */
 
-/* ===================================
-   DESKTOP - NAVEGAÇÃO HORIZONTAL
-   =================================== */
-
-/* Navegação horizontal por padrão */
 .main-nav {
     width: 100%;
     background: transparent;
@@ -1159,5 +1150,145 @@ body {
 
     .main-nav::-webkit-scrollbar-thumb:hover {
         background: rgba(212, 175, 55, 0.5);
+    }
+}
+
+.audio-item,
+.cd-item,
+.trophy-item,
+.collectible-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    flex-wrap: nowrap !important;
+    /* FORÇA não quebrar */
+    overflow: hidden;
+    /* CORTA qualquer coisa que saia */
+    position: relative;
+    /* Controle de posição */
+}
+
+/* Ícones - tamanho fixo */
+.audio-icon,
+.cd-icon,
+.trophy-icon,
+.collectible-icon {
+    font-size: 2rem;
+    min-width: 40px;
+    max-width: 40px;
+    flex-shrink: 0 !important;
+    /* NUNCA encolhe */
+}
+
+/* Info - pode encolher */
+.audio-info,
+.cd-info,
+.trophy-info,
+.collectible-info {
+    flex: 1;
+    min-width: 0 !important;
+    /* Permite comprimir */
+    overflow: hidden;
+}
+
+/* Nomes - quebram se necessário */
+.audio-name,
+.cd-name,
+.trophy-name,
+.collectible-name {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Botões - NUNCA encolhem ou saem */
+.audio-link,
+.cd-link,
+.trophy-link,
+.collectible-link {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    /* NUNCA encolhe */
+    max-width: none;
+    /* Remove limite */
+}
+
+/* MOBILE - Reduz tamanho do botão */
+@media (max-width: 768px) {
+
+    .audio-item,
+    .cd-item,
+    .trophy-item,
+    .collectible-item {
+        gap: 0.75rem;
+        padding: 0.875rem;
+    }
+
+    .audio-link,
+    .cd-link,
+    .trophy-link,
+    .collectible-link {
+        padding: 0.5rem 0.75rem !important;
+        font-size: 0.85rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .audio-item,
+    .cd-item,
+    .trophy-item,
+    .collectible-item {
+        gap: 0.6rem;
+        padding: 0.75rem;
+    }
+
+    .audio-icon,
+    .cd-icon,
+    .trophy-icon,
+    .collectible-icon {
+        font-size: 1.5rem;
+        min-width: 32px;
+        max-width: 32px;
+    }
+
+    /* Botão AINDA MENOR em mobile */
+    .audio-link,
+    .cd-link,
+    .trophy-link,
+    .collectible-link {
+        padding: 0.4rem 0.6rem !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.02em !important;
+    }
+}
+
+/* Para telas MUITO pequenas - última chance */
+@media (max-width: 380px) {
+
+    .audio-item,
+    .cd-item,
+    .trophy-item,
+    .collectible-item {
+        gap: 0.5rem;
+        padding: 0.65rem;
+    }
+
+    .audio-icon,
+    .cd-icon,
+    .trophy-icon,
+    .collectible-icon {
+        font-size: 1.3rem;
+        min-width: 28px;
+        max-width: 28px;
+    }
+
+    .audio-link,
+    .cd-link,
+    .trophy-link,
+    .collectible-link {
+        padding: 0.35rem 0.5rem !important;
+        font-size: 0.65rem !important;
     }
 }
