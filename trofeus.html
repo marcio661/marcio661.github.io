@@ -16,6 +16,20 @@
     <link rel="icon" href="https://marcio661.github.io/assets/favicon.png" type="image/png">
 
     <style>
+        @keyframes highlight-pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+            }
+
+            50% {
+                transform: scale(1.02);
+                box-shadow: 0 0 30px rgba(218, 165, 32, 0.8);
+            }
+        }
+
         .trophies-content {
             max-width: 1000px;
             margin: 0 auto;
@@ -82,6 +96,7 @@
             gap: 0.8rem;
         }
 
+        /* CORREÇÃO APLICADA */
         .trophy-item {
             display: flex;
             align-items: center;
@@ -92,6 +107,7 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             flex-wrap: nowrap;
+            /* NÃO deixa quebrar */
         }
 
         .trophy-item:hover {
@@ -104,13 +120,16 @@
             font-size: 2rem;
             min-width: 40px;
             max-width: 40px;
+            /* Tamanho fixo */
             text-align: center;
             flex-shrink: 0;
+            /* NUNCA encolhe */
         }
 
         .trophy-info {
             flex: 1;
             min-width: 0;
+            /* Permite encolher */
             overflow: hidden;
         }
 
@@ -141,12 +160,45 @@
             letter-spacing: 0.05em;
             transition: all 0.3s ease;
             white-space: nowrap;
+            /* NUNCA quebra */
             flex-shrink: 0;
+            /* NUNCA encolhe - CHAVE! */
         }
 
         .trophy-link:hover {
             background: #daa520;
             color: var(--color-background);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            .trophy-item {
+                gap: 0.75rem;
+                padding: 0.75rem;
+            }
+
+            .trophy-link {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .trophy-item {
+                gap: 0.5rem;
+                padding: 0.75rem;
+            }
+
+            .trophy-icon {
+                font-size: 1.5rem;
+                min-width: 30px;
+                max-width: 30px;
+            }
+
+            .trophy-link {
+                padding: 0.5rem 0.65rem;
+                font-size: 0.75rem;
+            }
         }
 
         .empty-message {
@@ -159,6 +211,11 @@
 </head>
 
 <body>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
     <div class="ornate-frame">
         <div class="frame-corner frame-top-left"></div>
         <div class="frame-corner frame-top-right"></div>
@@ -190,12 +247,10 @@
                 <li><a href="playthrough.html" class="nav-link">Atos</a></li>
                 <li><a href="colecionaveis.html" class="nav-link">Colecionáveis</a></li>
                 <li><a href="trofeus.html" class="nav-link active">Troféus</a></li>
+                <li><a href="audios.html" class="nav-link">Áudios</a></li>
+                <li><a href="cds.html" class="nav-link">CDs</a></li>
             </ul>
         </nav>
-
-        <a href="index.html" class="back-button">
-            ← Voltar ao Início
-        </a>
 
         <div class="trophies-content" id="trophiesContent">
             <div class="empty-message">
@@ -231,7 +286,6 @@
                 if (trophies.length === 0) {
                     document.getElementById('trophiesContent').innerHTML = `
                         <div class="empty-message">
-                            Nenhum troféu encontrado ainda. Continue escrevendo a playthrough!
                         </div>
                     `;
                     return;
@@ -300,7 +354,7 @@
 
                     items.forEach(item => {
                         html += `
-                            <div class="trophy-item">
+                            <div class="trophy-item" id="${item.id}">
                                 <div class="trophy-icon">${item.icon}</div>
                                 <div class="trophy-info">
                                     <div class="trophy-name">${item.name}</div>
@@ -320,8 +374,8 @@
             container.innerHTML = html;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadTrophies();
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadTrophies();
 
             const hash = window.location.hash;
             if (hash) {
@@ -329,8 +383,9 @@
                     const element = document.querySelector(hash);
                     if (element) {
                         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        element.style.animation = 'highlight-pulse 2s ease-in-out';
                     }
-                }, 500);
+                }, 800);
             }
         });
 
@@ -341,6 +396,33 @@
                 backgroundTexture.style.transform = `translateY(${scrollTop * 0.3}px)`;
             }
         });
+    </script>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const nav = document.querySelector('.main-nav');
+
+        if (hamburger && nav) {
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Fecha o menu ao clicar em um link
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+
+            // Fecha o menu ao clicar fora dele
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && !hamburger.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                }
+            });
+        }
     </script>
 </body>
 
