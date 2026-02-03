@@ -199,6 +199,32 @@
             letter-spacing: 0.08em;
             text-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
         }
+
+        .playthrough-figure {
+            max-width: 100%;
+            margin: 1.5rem auto;
+            overflow: hidden;
+        }
+
+        .playthrough-figure img {
+            max-width: 100%;
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .playthrough-figure {
+                margin: 1rem 0;
+            }
+
+            .playthrough-figure img {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: auto !important;
+            }
+        }
     </style>
 </head>
 
