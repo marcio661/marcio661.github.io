@@ -595,6 +595,144 @@ function handleHashNavigation() {
     }
 }
 
+function initGotoComments() {
+    var btn = document.getElementById('goto-comments');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+        var target = document.getElementById('comments');
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+
+    function updateVisibility() {
+        var target = document.getElementById('comments');
+        if (!target) return;
+        var rect = target.getBoundingClientRect();
+        if (rect.top >= 0 && rect.top < window.innerHeight * 0.6) {
+            btn.style.opacity = '0';
+            btn.style.pointerEvents = 'none';
+        } else {
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = '';
+        }
+    }
+
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    window.addEventListener('resize', updateVisibility);
+    updateVisibility();
+}
+
+function initLeftDrawer() {
+    var drawer = document.getElementById('left-drawer');
+    var toggle = document.getElementById('acts-toggle');
+    var closeBtn = document.getElementById('left-drawer-close');
+    var actsList = document.getElementById('acts-list');
+    if (!drawer || !toggle || !actsList) return;
+
+    function slugify(text) {
+        return text.toString().toLowerCase().trim()
+            .replace(/\s+/g, '-')
+            .replace(/[^a-z0-9\-\_]/g, '')
+            .replace(/\-+/g, '-');
+    }
+
+    var allSections = Array.prototype.slice.call(document.querySelectorAll('section'));
+    for (var i = 0; i < allSections.length; i++) {
+        var sec = allSections[i];
+        var isAct = /^ato/i.test(sec.id || '') || sec.id === 'prologo';
+        if (!isAct) continue;
+
+        var actTitleEl = sec.querySelector('.chapter-title');
+        var actTitle = actTitleEl ? actTitleEl.textContent.trim() : (sec.id || 'Ato');
+
+        let li = document.createElement('li');
+        li.className = 'act-item';
+
+        let btn = document.createElement('button');
+        btn.className = 'act-btn';
+        btn.type = 'button';
+        btn.textContent = actTitle;
+
+        let mapsUl = document.createElement('ul');
+        mapsUl.className = 'maps-list';
+
+        // helper para criar item de mapa
+        const addedMapIds = new Set();
+        function addMap(map) {
+            let mapId = map.id || map.dataset.map || (map.querySelector('.map-title') || {}).textContent || '';
+            mapId = slugify(mapId);
+            if (!mapId) return;
+            if (!map.id) map.id = mapId;
+            if (addedMapIds.has(map.id)) return;
+            addedMapIds.add(map.id);
+
+            let mapTitle = (map.querySelector('.map-title') || {}).textContent || mapId;
+            let mapLi = document.createElement('li');
+            let a = document.createElement('a');
+            a.href = '#' + map.id;
+            a.textContent = mapTitle;
+            (function (mid) {
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let target = document.getElementById(mid);
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    drawer.classList.remove('open');
+                    drawer.setAttribute('aria-hidden', 'true');
+                });
+            })(map.id);
+            mapLi.appendChild(a);
+            mapsUl.appendChild(mapLi);
+        }
+
+        // primeiro, maps dentro da seção do ato (caso existam)
+        let mapsInside = Array.prototype.slice.call(sec.querySelectorAll('.map-section'));
+        mapsInside.forEach(m => addMap(m));
+
+        // depois, mapas nas seções seguintes até o próximo ato/comentários (para casos onde os mapas estão fora)
+        for (let j = i + 1; j < allSections.length; j++) {
+            let next = allSections[j];
+            let nextIsAct = /^ato/i.test(next.id || '') || next.id === 'prologo';
+            let nextIsComments = next.id === 'comments' || (next.classList && next.classList.contains('comments-section'));
+            if (nextIsAct || nextIsComments) break;
+
+            if (next.classList && next.classList.contains('map-section')) {
+                addMap(next);
+            }
+        }
+
+        btn.addEventListener('click', function () {
+            mapsUl.classList.toggle('open');
+        });
+
+        li.appendChild(btn);
+        li.appendChild(mapsUl);
+        actsList.appendChild(li);
+    }
+
+    toggle.addEventListener('click', function () {
+        drawer.classList.add('open');
+        drawer.setAttribute('aria-hidden', 'false');
+    });
+    closeBtn && closeBtn.addEventListener('click', function () {
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+    });
+
+    document.addEventListener('click', function (e) {
+        if (!drawer.classList.contains('open')) return;
+        if (drawer.contains(e.target) || toggle.contains(e.target)) return;
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            drawer.classList.remove('open');
+            drawer.setAttribute('aria-hidden', 'true');
+        }
+    });
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -617,6 +755,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         await loadCDs();
         handleHashNavigation();
     }
+
+    // Inicializações específicas da página
+    try { initGotoComments(); } catch (e) { /* ignorar se não existir */ }
+    try { initLeftDrawer(); } catch (e) { /* ignorar se não existir */ }
 
     setTimeout(() => {
         handleHashNavigation();

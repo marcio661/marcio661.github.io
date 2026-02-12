@@ -256,10 +256,151 @@
                 height: auto !important;
             }
         }
+
+        /* Botão flutuante: Ir para os comentários */
+        .goto-comments-button {
+            position: fixed;
+            right: 16px;
+            bottom: 20px;
+            z-index: 999;
+            background: var(--color-primary);
+            color: var(--color-background);
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 999px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform 0.15s ease, opacity 0.15s ease;
+        }
+
+        .goto-comments-button:hover {
+            transform: translateY(-3px);
+        }
+
+        @media (min-width: 1100px) {
+            .goto-comments-button {
+                right: 32px;
+                bottom: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .goto-comments-button {
+                padding: 0.6rem 0.9rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Menu lateral esquerdo (drawer) */
+        .drawer-toggle-left {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6);
+            color: var(--color-accent);
+            border: 2px solid var(--color-border);
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+
+        .left-drawer {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 280px;
+            max-width: 80vw;
+            background: linear-gradient(180deg, rgba(18, 18, 20, 0.98), rgba(8, 8, 10, 0.98));
+            border-right: 2px solid var(--color-border);
+            transform: translateX(-110%);
+            transition: transform 0.28s ease;
+            z-index: 1100;
+            padding: 1rem 0.75rem;
+            overflow-y: auto;
+        }
+
+        .left-drawer.open {
+            transform: translateX(0);
+        }
+
+        .left-drawer .left-drawer-close {
+            display: inline-flex;
+            margin-left: auto;
+            margin-right: 6px;
+            background: transparent;
+            border: none;
+            color: var(--color-accent);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .left-drawer .drawer-nav {
+            padding: 0.5rem;
+        }
+
+        .left-drawer .acts-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .left-drawer .act-item {
+            margin-bottom: 0.4rem;
+        }
+
+        .left-drawer .act-btn {
+            width: 100%;
+            text-align: left;
+            background: transparent;
+            border: none;
+            color: var(--color-primary);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            padding: 0.5rem 0.6rem;
+            cursor: pointer;
+        }
+
+        .left-drawer .maps-list {
+            list-style: none;
+            margin: 0;
+            padding-left: 0.6rem;
+            display: none;
+        }
+
+        .left-drawer .maps-list.open {
+            display: block;
+        }
+
+        .left-drawer .maps-list a {
+            display: block;
+            padding: 0.35rem 0.6rem;
+            color: var(--color-text);
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .left-drawer .maps-list a:hover {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--color-accent);
+        }
+
+        @media (min-width: 1024px) {
+            .drawer-toggle-left {
+                left: 28px;
+                top: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <button id="acts-toggle" class="drawer-toggle-left" aria-label="Abrir Atos">Atos</button>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span>
         <span></span>
@@ -278,6 +419,18 @@
 
     <div class="background-texture"></div>
     <div class="vignette"></div>
+
+    <aside id="left-drawer" class="left-drawer" aria-hidden="true">
+        <div style="display:flex; align-items:center; gap:8px; padding:0 0.6rem;">
+            <strong style="color:var(--color-accent);">Atos</strong>
+            <button id="left-drawer-close" class="left-drawer-close" aria-label="Fechar">×</button>
+        </div>
+        <nav class="drawer-nav">
+            <ul class="acts-list" id="acts-list">
+                <!-- preenchido por JS -->
+            </ul>
+        </nav>
+    </aside>
 
     <div class="container">
         <header class="site-header">
@@ -4603,8 +4756,336 @@
 
 
                 <div class="playthrough-text">
-                    <!-- Continue escrevendo aqui -->
+                    <p>Saindo do mapa, saia pela borda logo à frente, pegue o trajeto à direita, ignore a bifurcação e
+                        vá em frente. Passe por baixo da espécie de “ponte” e chegue no lugar abaixo.</p>
+
+                    <figure class="playthrough-figure">
+                        <img src="Clair obscur fotos/D_AR_AL.jpg" alt="" loading="lazy">
+                    </figure>
+
+                    <p>Nessa ilha há um miniboss. Enfrente ele para receber <a href="colecionaveis.html#coll-jarum-nv13"
+                            class="collectible" data-type="equipamento" data-chapter="ato2"
+                            data-map="continente-parte-iv" data-icon="⚔️" id="coll-jarum-nv13">Jarum nv 13</a>, <a
+                            href="colecionaveis.html#coll-catalisador-chroma-resplandescente-x2-1" class="collectible"
+                            data-type="equipamento" data-chapter="ato2" data-map="continente-parte-iv" data-icon="⬆️"
+                            id="coll-catalisador-chroma-resplandescente-x2-1">Catalisador de chroma resplandescente
+                            x2</a> e <a href="colecionaveis.html#coll-tom-de-lumina-x5-continente-parte-iv-1"
+                            class="collectible" data-type="luminas" data-chapter="ato2" data-map="continente-parte-iv"
+                            data-icon="⭐" id="coll-tom-de-lumina-x5-continente-parte-iv-1">Tom de lumina x5</a>.</p>
+
+                    <p>Derrotando ele, pegue o item no meio dos caixotes: mais <a
+                            href="colecionaveis.html#coll-catalisador-chroma-resplandescente-x2-2" class="collectible"
+                            data-type="equipamento" data-chapter="ato2" data-map="continente-parte-iv" data-icon="⬆️"
+                            id="coll-catalisador-chroma-resplandescente-x2-2">Catalisador de chroma resplandescente
+                            x2</a>.</p>
+
+                    <p>Feito isso, volte pra água, vire à direita e siga o percurso. Ignore a primeira bifurcação, siga
+                        em frente até chegar numa praia.</p>
+
+                    <figure class="playthrough-figure">
+                        <img src="Clair obscur fotos/AR_AL_CI.jpg" alt="" loading="lazy">
+                    </figure>
+
+                    <p>Nessa ilha tem um trio de inimigos. Enfrente eles para receber <a
+                            href="colecionaveis.html#coll-radiarim-nv7" class="collectible" data-type="equipamento"
+                            data-chapter="ato2" data-map="continente-parte-iv" data-icon="⚔️"
+                            id="coll-radiarim-nv7">Radiarim nv 7</a> e <a href="colecionaveis.html#coll-brulerum-nv7"
+                            class="collectible" data-type="equipamento" data-chapter="ato2"
+                            data-map="continente-parte-iv" data-icon="⚔️" id="coll-brulerum-nv7">Brulerum nv7</a>.</p>
+
+                    <p>Pegue o item que está nos caixotes para receber <a
+                            href="colecionaveis.html#coll-cura-energizante" class="collectible" data-type="pictos"
+                            data-chapter="ato2" data-map="continente-parte-iv" data-icon="🖼️"
+                            id="coll-cura-energizante">Cura Energizante</a>.</p>
+
+                    <p>Volte pra água e vire à esquerda, esquerda de novo pra chegar no mar aberto, e vire à esquerda de
+                        novo pra chegar na ilha abaixo. Entre por essa entrada mostrada no print.</p>
+
+                    <figure class="playthrough-figure">
+                        <img src="Clair obscur fotos/Ilha_OP_PM.jpg" alt="" loading="lazy">
+                    </figure>
+
+                    <p>Vá pelo caminho pra outra saída e você vai encontrar um mercador no final. Compre se você quiser,
+                        mas ele não vende nada que vai ajudar em troféus mais tarde (não esqueça que estamos guardando
+                        95 mil chromas pra uma missão de um nevron branco).</p>
+
+                    <p>Saia pela água e vire à direita. Ignore o amiguinho gigante andando pela água, é impossível matar
+                        ele (por enquanto rs) e, imediatamente, atraque na areia logo à direita da mesma ilha.</p>
+
+                    <figure class="playthrough-figure">
+                        <img src="Clair obscur fotos/M_I_D.jpg" alt="" loading="lazy">
+                    </figure>
+
+                    <p>Imediatamente você já vai ver um item em umas caixas: é um <a
+                            href="colecionaveis.html#coll-tom-de-lumina-continente-parte-iv-2" class="collectible"
+                            data-type="luminas" data-chapter="ato2" data-map="continente-parte-iv" data-icon="⭐"
+                            id="coll-tom-de-lumina-continente-parte-iv-2">Tom de lumina</a>.</p>
+
+                    <p>Continue dando a volta pela pedra gigante e você vai ver uns inimigos andando pela praia. Eles
+                        não dão itens, só XP. Continue o caminho até achar uma subida e suba.</p>
+
+                    <p>Lá em cima você vai encontrar <a
+                            href="colecionaveis.html#coll-porta-da-mansao-continente-parte-iv-1" class="collectible"
+                            data-type="porta" data-chapter="ato2" data-map="continente-parte-iv" data-icon="🚪"
+                            id="coll-porta-da-mansao-continente-parte-iv-1">porta da mansão</a>!</p>
+
+                    <p>Vocês vão estar numa biblioteca. Suba as escadas, vire à esquerda, esquerda novamente, pule na
+                        plataforma e faça parkour pra chegar do outro lado e pegar <a
+                            href="colecionaveis.html#coll-forma-de-energia" class="collectible" data-type="fragmento"
+                            data-chapter="ato2" data-map="continente-parte-iv" data-icon="🧩"
+                            id="coll-forma-de-energia">Forma de energia</a>.</p>
+
+                    <p>Caia pro andar mais baixo, suba as escadas e vá à direita. Interaja com os livros ao lado do
+                        lustre na estante para abrir uma passagem.</p>
+
+                    <p>Seguindo em frente, você vai pegar o <a href="colecionaveis.html#coll-traje-civil-verso"
+                            class="collectible" data-type="traje" data-chapter="ato2" data-map="continente-parte-iv"
+                            data-icon="👔" id="coll-traje-civil-verso">Traje civil para verso</a>.</p>
+
+                    <p>Desça novamente pra área inicial e abra a porta da sua frente. Nós já viemos aqui, é a sala que
+                        fica o quadro dos devs do jogo, mas só abre a porta mesmo, não precisa ir adiante. Vire à
+                        esquerda e abra a outra porta pra voltar ao saguão principal.</p>
+
+                    <p>Saia pela porta principal pra voltar ao continente. Chame o Esquie, desça, volte pra água e siga
+                        em frente até chegar na ilha abaixo. Nessa ilha, vá pela direita pra entrar no ateliê de
+                        pintura. Tá com aviso de cuidado, mas você pode entrar, não tem lutas agora.</p>
+
+                    <figure class="playthrough-figure">
+                        <img src="Clair obscur fotos/A_P_I.jpg" alt="" loading="lazy">
+                    </figure>
                 </div>
+
+                <div class="map-section" data-map="atelie-de-pintura-parte-i">
+                    <h3 class="map-title">Ateliê de pintura, parte I</h3>
+
+                    <div class="map-collectibles-summary">
+                        <h4>Itens neste mapa:</h4>
+                        <ul>
+                            <li>📜 Luz da besta</li>
+                        </ul>
+                    </div>
+
+                    <div class="playthrough-text">
+                        <p>Nesse mapa é só parkour. Vá seguindo em frente até você cair em um quadro gigantesco com
+                            um daqueles garotos. Fale com ele e diga “sim” pra ajudar. Ele vai te entregar <a
+                                href="colecionaveis.html#coll-luz-da-besta-1" class="collectible" data-type="missao"
+                                data-chapter="ato2" data-map="atelie-de-pintura-parte-i" data-icon="📜"
+                                id="coll-luz-da-besta-1">Luz da Besta</a>. Precisamos de mais 2, que vão estar em
+                            mapas futuros.</p>
+
+                        <p>Se você quiser, pode cair no limbo pra voltar ao início do mapa e passar pela porta, ou
+                            ir por trás do garoto e continuar o parkour.</p>
+
+                        <p>Se você for pela segunda opção, no final você vai encontrar uma estátua de um inimigo
+                            parecido com o Mestre das Lâmpadas que enfrentamos antes. Interaja com a estátua e
+                            insira a Luz da Besta que você acabou de receber. Ainda faltam 2 pra ele ativar.</p>
+
+                        <p>Siga em frente, use a bandeira se quiser e pegue o portal à direita pra voltar ao
+                            continente.</p>
+                    </div>
+                </div>
+                <section class="map-section" data-map="o-continente-parte-iv" id="o-continente-parte-iv">
+                    <h3 class="map-title">O continente, parte IV</h3>
+
+                    <div class="map-collectibles-summary">
+                        <h4>Itens neste mapa:</h4>
+                        <ul>
+                            <li>🖼️ Cura acelerante</li>
+                            <li>⚔️ Brulerum nv 10</li>
+                            <li>🖼️ Confiante nv 10</li>
+                        </ul>
+                    </div>
+
+                    <div class="playthrough-text">
+                        <p>Assim que sair do ateliê de pintura, vire à direita e não volte pra água agora. Siga e
+                            enfrente o trio de inimigos pra ganhar XP.</p>
+
+                        <p>Logo ao lado deles, ainda na mesma praia, vai ter uma tendinha pequena com alguns caixotes e
+                            um item. Pegue o item para receber <a href="colecionaveis.html#coll-cura-acelerante"
+                                class="collectible" data-type="pictos" data-chapter="ato2"
+                                data-map="o-continente-parte-iv" data-icon="🖼️" id="coll-cura-acelerante">Cura
+                                Acelerante</a>.</p>
+
+                        <p>Volte pra água e siga em frente pra “atracar” em mais uma ilha. Detalhe: nessa ilha tá a
+                            nossa segunda Praia Gestral, só que com o pior jogo (na minha opinião, claro).</p>
+
+                        <figure class="playthrough-figure">
+                            <img src="Clair obscur fotos/P_G_II.jpg" alt="" loading="lazy">
+                        </figure>
+
+                        <p>Assim que atracar, enfrente os inimigos logo à frente e, ao vencer, você vai receber <a
+                                href="colecionaveis.html#coll-brulerum-nv10" class="collectible" data-type="equipamento"
+                                data-chapter="ato2" data-map="o-continente-parte-iv" data-icon="⚔️"
+                                id="coll-brulerum-nv10">Brulerum nv 10</a> e <a
+                                href="colecionaveis.html#coll-confiante-nv10" class="collectible" data-type="pictos"
+                                data-chapter="ato2" data-map="o-continente-parte-iv" data-icon="🖼️"
+                                id="coll-confiante-nv10">Confiante nv 10</a>.</p>
+
+                        <p>Agora sim, vá em direção à Praia Gestral, do lado esquerdo do mapa.</p>
+                    </div>
+                </section>
+
+                <section class="map-section" data-map="praia-gestral-parte-ii" id="praia-gestral-parte-ii">
+                    <h3 class="map-title">Praia Gestral, parte II</h3>
+
+                    <div class="map-collectibles-summary">
+                        <h4>Itens neste mapa:</h4>
+                        <ul>
+                            <li>⬆️ Catalisador de chroma resplandescente</li>
+                            <li>👔 Traje de banho II para Lune</li>
+                            <li>👔 Traje de banho II para Sciel</li>
+                        </ul>
+                    </div>
+
+                    <div class="playthrough-text">
+                        <p>Siga em frente pra falar com o gestral. Ele vai te dar 3 níveis, e cada nível tem uma
+                            recompensa.</p>
+
+                        <p>Basicamente funciona assim: é um vôlei nesse minigame. Você deve apertar R1/RB assim que o
+                            gestral criança chegar perto da sua jangada. Quanto maior a dificuldade, mais vida a jangada
+                            inimiga vai ter.</p>
+
+                        <p>Você sempre terá 3 vidas. Se for atingido 3x, independente da dificuldade, você perde.</p>
+
+                        <p>As recompensas por vencer nas três dificuldades, respectivamente da mais fácil pra mais
+                            difícil, são: <a
+                                href="colecionaveis.html#coll-catalisador-chroma-resplandescente-praia-gestral-parte-ii-1"
+                                class="collectible" data-type="equipamento" data-chapter="ato2"
+                                data-map="praia-gestral-parte-ii" data-icon="⬆️"
+                                id="coll-catalisador-chroma-resplandescente-praia-gestral-parte-ii-1">Catalisador de
+                                chroma resplandescente</a>, <a
+                                href="colecionaveis.html#coll-traje-de-banho-ii-para-lune" class="collectible"
+                                data-type="traje" data-chapter="ato2" data-map="praia-gestral-parte-ii" data-icon="👔"
+                                id="coll-traje-de-banho-ii-para-lune">Traje de banho II para Lune</a> e <a
+                                href="colecionaveis.html#coll-traje-de-banho-ii-para-sciel" class="collectible"
+                                data-type="traje" data-chapter="ato2" data-map="praia-gestral-parte-ii" data-icon="👔"
+                                id="coll-traje-de-banho-ii-para-sciel">Traje de banho II para Sciel</a>.</p>
+                        <p> Depois de vencer o minigame, saia do mapa para voltar ao continente.</p>
+                    </div>
+                </section>
+                <section class="map-section" data-map="o-continente-parte-iv" id="o-continente-parte-iv">
+                    <h3 class="map-title">O continente, parte IV</h3>
+
+                    <div class="map-collectibles-summary">
+                        <h4>Itens neste mapa:</h4>
+                        <ul>
+                            <li>Nenhum</li>
+                        </ul>
+                    </div>
+
+                    <div class="playthrough-text">
+                        <p>Saindo da Praia Gestral, parte II, pegue o caminho à direita para nadar. Continue indo em
+                            linha reta, para a parte de baixo do mapa, até você encontrar a ilha abaixo.</p>
+
+                        <figure class="playthrough-figure">
+                            <img src="Clair obscur fotos/C_F_Q_O.jpg" alt="" loading="lazy">
+                        </figure>
+
+                        <p>Atraque nela e fale com o mercador se desejar. Ele não vende nada importante, além de cortes
+                            de cabelo.</p>
+
+                        <p>Vire à esquerda para entrar no mapa Caverna das falésias QuebraOndas.</p>
+                    </div>
+                </section>
+
+                <section class="map-section" data-map="caverna-das-falesias-quebraondas"
+                    id="caverna-das-falesias-quebraondas">
+                    <h3 class="map-title">Caverna das falésias QuebraOndas</h3>
+
+                    <div class="map-collectibles-summary">
+                        <h4>Itens neste mapa:</h4>
+                        <ul>
+                            <li>⭐ Tom de lumina x2</li>
+                            <li>🧩 Elixir de chroma</li>
+                            <li>🖼️ Renascimento energizante nv 8</li>
+                            <li>🖼️ Poder extenuante nv 8</li>
+                            <li>🔊 Audio da expedição 54</li>
+                        </ul>
+                    </div>
+
+                    <div class="playthrough-text">
+                        <p>Assim que entrar no mapa, siga o caminho até uma bandeira. Use se quiser.</p>
+
+                        <p>Da bandeira, pegue a direita até o grappling hook. Continue o caminho, mas antes de pegar o
+                            próximo grappling, vire à direita passando pelo arco de uma porta quebrada para pegar <a
+                                href="colecionaveis.html#coll-tom-de-lumina-caverna-das-falesias-quebraondas-1"
+                                class="collectible" data-type="luminas" data-chapter="ato2"
+                                data-map="caverna-das-falesias-quebraondas" data-icon="⭐"
+                                id="coll-tom-de-lumina-caverna-das-falesias-quebraondas-1">Tom de lumina</a>.</p>
+
+                        <p>Volte e agora sim pegue o grappling hook. Continue pelo único caminho e, assim que passar
+                            pela espécie de ponte, você já vai ver outro item. Pegue para coletar mais um <a
+                                href="colecionaveis.html#coll-tom-de-lumina-caverna-das-falesias-quebraondas-2"
+                                class="collectible" data-type="luminas" data-chapter="ato2"
+                                data-map="caverna-das-falesias-quebraondas" data-icon="⭐"
+                                id="coll-tom-de-lumina-caverna-das-falesias-quebraondas-2">Tom de lumina</a>.</p>
+
+                        <p>Desse item, vá pela direita até achar uma passagem onde o personagem precisa se abaixar pra
+                            passar. Passe por ela, use a corda logo à frente e, assim que subir, pegue o caminho da
+                            esquerda. Você já vai avistar o primeiro cadeado desse mapa.</p>
+
+                        <figure class="playthrough-figure">
+                            <img src="Clair obscur fotos/C_I_CFQO.jpg" alt="" loading="lazy">
+                        </figure>
+
+                        <p>Do primeiro cadeado, ande pra direita e você vai encontrar o baú dessa área. O próximo
+                            cadeado está ao lado direito desse baú, lá no horizonte.</p>
+
+                        <figure class="playthrough-figure">
+                            <img src="Clair obscur fotos/C_II_CFQO.jpg" alt="" loading="lazy">
+                        </figure>
+
+                        <p>Do segundo cadeado, ainda com a mira ativa, vire à direita pra encontrar o último cadeado.
+                        </p>
+
+                        <figure class="playthrough-figure">
+                            <img src="Clair obscur fotos/C_III_CFQO.jpg" alt="" loading="lazy">
+                        </figure>
+
+                        <p>Agora volte ao baú, que vai estar aberto, e pegue o item <a
+                                href="colecionaveis.html#coll-elixir-de-chroma-caverna-das-falesias-quebraondas-1"
+                                class="collectible" data-type="fragmento" data-chapter="ato2"
+                                data-map="caverna-das-falesias-quebraondas" data-icon="🧩"
+                                id="coll-elixir-de-chroma-caverna-das-falesias-quebraondas-1">Elixir de chroma</a>.</p>
+
+                        <p>Volte até a corda, desça, passe pela passagem pequena de novo pra voltar no lugar onde você
+                            pegou o Tom de lumina e, dessa vez, siga em frente. Pra usar o próximo grappling hook, você
+                            precisa ir até a ponta do pilar.</p>
+
+                        <p>Ao pegar, enfrente o inimigo à sua frente, é um miniboss. A mecânica dele é: quando ele
+                            começar a emergir energia do cristal, basta usar disparos de mira livre no cristal em cima
+                            dele, como no print abaixo. Uma hora ele vai ser destruído ou enfraquecido, e aí o inimigo
+                            volta a receber dano normalmente.</p>
+
+                        <figure class="playthrough-figure">
+                            <img src="Clair obscur fotos/CRISTAL_BOSS.jpg" alt="" loading="lazy">
+                        </figure>
+
+                        <p>Assim que você vencer, você vai receber <a
+                                href="colecionaveis.html#coll-renascimento-energizante-nv-8-caverna-das-falesias-quebraondas-1"
+                                class="collectible" data-type="pictos" data-chapter="ato2"
+                                data-map="caverna-das-falesias-quebraondas" data-icon="🖼️"
+                                id="coll-renascimento-energizante-nv-8-caverna-das-falesias-quebraondas-1">Renascimento
+                                energizante nv 8</a>.</p>
+
+                        <p>Dessa última luta, tem dois itens: um à esquerda e um áudio de expedição à direita. O item da
+                            esquerda é <a
+                                href="colecionaveis.html#coll-poder-extenuante-nv-8-caverna-das-falesias-quebraondas-1"
+                                class="collectible" data-type="pictos" data-chapter="ato2"
+                                data-map="caverna-das-falesias-quebraondas" data-icon="🖼️"
+                                id="coll-poder-extenuante-nv-8-caverna-das-falesias-quebraondas-1">Poder extenuante nv
+                                8</a> e, à direita, o <a href="audios.html#coll-audio-da-expedicao-54"
+                                class="collectible" data-type="audio" data-chapter="ato2"
+                                data-map="caverna-das-falesias-quebraondas" data-icon="🔊"
+                                id="coll-audio-da-expedicao-54">Audio da expedição 54</a>. Colete os dois e siga em
+                            frente pra sair do mapa.</p>
+                    </div>
+                </section>
+
+
+
+
+
             </section>
 
 
@@ -4617,7 +5098,7 @@
     </div>
 
     <!-- Seção de Comentários -->
-    <section class="comments-section">
+    <section id="comments" class="comments-section">
         <h2 class="comments-title">Comentários da Comunidade</h2>
         <div id="disqus_thread"></div>
         <script>
@@ -4646,6 +5127,10 @@
         </p>
     </footer>
     </div>
+
+    <!-- Botão para rolar até os comentários -->
+    <button id="goto-comments" class="goto-comments-button" aria-label="Ir para os comentários">Ir para os
+        comentários</button>
 
     <script src="./app.js"></script>
 </body>
