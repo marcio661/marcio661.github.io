@@ -92,6 +92,9 @@
             transition: all 0.3s ease;
             position: relative;
             text-decoration: none;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
         }
 
         .collectible::before {
@@ -100,45 +103,52 @@
         }
 
         .collectible[data-type="missao"] {
-            background: rgba(147, 112, 219, 0.2);
-            color: #b8a3d4;
-            border: 1px solid rgba(147, 112, 219, 0.4);
+            background: rgba(147, 112, 219, 0.6);
+            color: #ffffff;
+            border: 1px solid rgba(147, 112, 219, 0.85);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
         }
 
         .collectible[data-type="chromas"] {
-            background: rgba(255, 215, 0, 0.15);
-            color: #ffd700;
-            border: 1px solid rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.65);
+            color: #0b0b0b;
+            border: 1px solid rgba(255, 215, 0, 0.9);
+            text-shadow: 0 1px 0 rgba(255, 255, 255, 0.15);
         }
 
         .collectible[data-type="pictos"] {
-            background: rgba(100, 149, 237, 0.15);
-            color: #87ceeb;
-            border: 1px solid rgba(100, 149, 237, 0.3);
+            background: rgba(100, 149, 237, 0.28);
+            color: #ffffff;
+            border: 1px solid rgba(100, 149, 237, 0.6);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
         }
 
         .collectible[data-type="luminas"] {
-            background: rgba(255, 140, 0, 0.15);
-            color: #ffa07a;
-            border: 1px solid rgba(255, 140, 0, 0.3);
+            background: rgba(255, 140, 0, 0.6);
+            color: #ffffff;
+            border: 1px solid rgba(255, 140, 0, 0.8);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
         }
 
         .collectible[data-type="equipamento"] {
-            background: rgba(192, 192, 192, 0.15);
-            color: #c0c0c0;
-            border: 1px solid rgba(192, 192, 192, 0.3);
+            background: rgba(120, 120, 120, 0.25);
+            color: #ffffff;
+            border: 1px solid rgba(120, 120, 120, 0.45);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
         }
 
         .collectible[data-type="interativo"] {
-            background: rgba(50, 205, 50, 0.15);
-            color: #90ee90;
-            border: 1px solid rgba(50, 205, 50, 0.3);
+            background: rgba(50, 205, 50, 0.35);
+            color: #052805;
+            border: 1px solid rgba(50, 205, 50, 0.6);
         }
 
         .collectible[data-type="trofeu"] {
-            background: rgba(218, 165, 32, 0.2);
-            color: #daa520;
-            border: 1px solid rgba(218, 165, 32, 0.4);
+            background: rgba(218, 165, 32, 0.32);
+            color: var(--color-text);
+            font-weight: 700;
+            border: 1px solid rgba(218, 165, 32, 0.6);
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
         }
 
         .collectible:hover {
@@ -5122,7 +5132,7 @@
     <footer class="site-footer">
         <div class="footer-ornament"></div>
         <p class="footer-text">
-            Guia criado com dedicação para a comunidade de Clair Obscur<br>
+            Guia criado com dedicação para a comunidade de Clair Obscur. For Those Who Come After.<br>
             <small>© 2025 - Clair Obscur: Expedition 33 desenvolvido por Sandfall Interactive</small>
         </p>
     </footer>

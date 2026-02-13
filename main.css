@@ -51,8 +51,8 @@ body {
 
 .frame-corner {
     position: absolute;
-    width: 180px;
-    height: 180px;
+    width: 120px;
+    height: 120px;
     opacity: 1;
 }
 
@@ -73,8 +73,8 @@ body {
 .frame-top-left::before {
     content: '◆';
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 15px;
+    left: 15px;
     font-size: 28px;
     color: #d4af37;
     text-shadow: 0 0 30px #d4af37, 0 0 50px rgba(212, 175, 55, 0.8);
@@ -97,8 +97,8 @@ body {
 .frame-top-right::before {
     content: '◆';
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     font-size: 28px;
     color: #d4af37;
     text-shadow: 0 0 30px #d4af37, 0 0 50px rgba(212, 175, 55, 0.8);
@@ -121,8 +121,8 @@ body {
 .frame-bottom-left::before {
     content: '◆';
     position: absolute;
-    bottom: 20px;
-    left: 20px;
+    bottom: 15px;
+    left: 15px;
     font-size: 28px;
     color: #d4af37;
     text-shadow: 0 0 30px #d4af37, 0 0 50px rgba(212, 175, 55, 0.8);
@@ -145,8 +145,8 @@ body {
 .frame-bottom-right::before {
     content: '◆';
     position: absolute;
-    bottom: 20px;
-    right: 20px;
+    bottom: 15px;
+    right: 15px;
     font-size: 28px;
     color: #d4af37;
     text-shadow: 0 0 30px #d4af37, 0 0 50px rgba(212, 175, 55, 0.8);
@@ -1167,6 +1167,10 @@ body {
     /* CORTA qualquer coisa que saia */
     position: relative;
     /* Controle de posição */
+    background: rgba(26, 26, 31, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    color: var(--color-text);
 }
 
 /* Ícones - tamanho fixo */
@@ -1200,6 +1204,14 @@ body {
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
+}
+
+/* Garantir legibilidade dos troféus */
+.trophy-name,
+.trophy-link {
+    color: var(--color-text) !important;
+    font-weight: 700;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 /* Botões - NUNCA encolhem ou saem */
